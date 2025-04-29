@@ -37,6 +37,7 @@ int Hero::levelUp() {
     level++;
     strength += 1;
     hp += 2;
+    xp = 0;
     cout << name << " leveled up to " << level << "!" << endl;
     return level;
 }
