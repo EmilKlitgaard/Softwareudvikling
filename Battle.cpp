@@ -14,32 +14,41 @@ Battle::Battle(Hero &newHero, Enemy &newEnemy)
 Battle::~Battle() {}
 
 void Battle::gameOver() {
-    cout << hero.getName() << " is defeated!" << endl;
+    cout << hero.getName() << " is defeated!" << "\n" << endl;
+    sleep(3);
     cout << "╔══════════════════════════════════╗\n"
             "║      * * * GAME OVER  * * *      ║\n"
             "╚══════════════════════════════════╝" << endl;
     sleep(1);
-    cout << "Exiting the game in 5..."
+    cout << "Exiting the game in 5..." << endl;
     sleep(1);
-    cout << "4..."
+    cout << "4..." << endl;
     sleep(1);
-    cout << "3..."
+    cout << "3..." << endl;
     sleep(1);
-    cout << "2..."
+    cout << "2..." << endl;
     sleep(1);
-    cout << "1..."
+    cout << "1..." << endl;
     sleep(1);
 }
 
-void Battle::startBattle() {
-    cout << "Battle begins: " << hero.getName() << " vs. " << enemy.getName() << endl;
+void Battle::awaitEnter() {
+    cin.ignore();
+    cin.get();
+}
+
+bool Battle::startBattle() {
+    cout << "╔══════════════════════════════════════╗\n"
+            "║      - - - Battle Begins  - - -      ║\n"
+            "╚══════════════════════════════════════╝" << endl;
+    cout << hero.getName() << " vs. " << enemy.getName() << endl;
 
     int heroHp = hero.getHp();
     int enemyHp = enemy.getHp();
 
     while (heroHp > 0 && enemyHp > 0) {
-        cout << "It's your turn! Press ENTER to attack." << endl;
-        cin;
+        cout << "\n" << "It's your turn! Press ENTER to attack." << endl;
+        awaitEnter();
         enemyHp -= hero.getStrength();
         cout << hero.getName() << " attacks " << enemy.getName() << " for " << hero.getStrength() << " damage. " << enemy.getName() << " HP: " << enemyHp << endl;
 
@@ -53,19 +62,19 @@ void Battle::startBattle() {
                 hero.levelUp();
                 sleep(1);
             }
-            break;
+            return true;
         }
 
         sleep(1);
 
-        cout << "It's" << enemy.getName() << "'s turn!" << endl;
         heroHp -= enemy.getStrength();
         cout << enemy.getName() << " attacks " << hero.getName() << " for " << enemy.getStrength() << " damage. " << hero.getName() << " HP: " << heroHp << endl;
 
         if (heroHp <= 0) {
             gameOver();
-            break;
+            return false;
         }
-        sleep(1);
+        sleep(3);
     }
+    return false;
 }

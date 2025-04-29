@@ -5,6 +5,7 @@
 
 #include "Hero.h"
 #include "Enemy.h"
+#include "Battle.h"
 
 using namespace std;
 
@@ -13,7 +14,8 @@ enum State {
     CREATE_HERO,
     LOAD_HERO,
     SELECT_ENEMY,
-    START_ADVENTURE,
+    SHOW_STATS,
+    ADVENTURE,
     START_BATTLE,
     POST_BATTLE,
     EXIT
@@ -26,6 +28,7 @@ class Game {
         
         int start();
         void menu();
+        void showStats();
         void adventure();
         void clearScreen();
         void createHero(vector<Hero> &heroes);
@@ -41,6 +44,7 @@ class Game {
         int userInput = -1;
         
         bool gameStart = true;
+        bool battleWon;
         
         State STATE = MENU;
 };

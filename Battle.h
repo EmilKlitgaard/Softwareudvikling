@@ -10,8 +10,9 @@ class Battle {
         Battle(Hero &newHero, Enemy &newEnemy);
         ~Battle();
 
-        void startBattle();
+        bool startBattle();
         void gameOver();
+        void awaitEnter();
 
     private:
         Hero &hero;

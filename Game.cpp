@@ -3,8 +3,10 @@
 #include <limits>
 #include <unistd.h>
 
+#include "Game.h"
 #include "Hero.h"
 #include "Enemy.h"
+#include "Battle.h"
 
 Game::Game() {}
 Game::~Game() {}
@@ -18,7 +20,7 @@ void Game::menu() {
             "║      - - - MENU  - - -      ║\n"
             "╚═════════════════════════════╝" << endl;
     cout << "Choose one of the following options: " << endl;
-    cout << "Create new Hero (1)" << "\t" << "Load Hero (2)" << "\t" << "Exit game (3)" << endl;
+    cout << "- Create new Hero (1)" << "\n" << "- Load Hero (2)" << "\n" << "- Exit game (3)" << endl;
     
     while (true) {
         if (cin >> userInput) {
@@ -41,27 +43,29 @@ void Game::menu() {
     }
 }
 
-void Game::createHero(vector<Hero>& heroes){
+void Game::createHero(vector<Hero> &heroes){
     cout << "╔═══════════════════════════════════╗\n"
             "║      - - - Create Hero - - -      ║\n"
             "╚═══════════════════════════════════╝" << endl;
     cout << "Enter your new Hero's name: ";
     
-    string currentHero;
-    cin >> currentHero;
+    string heroName;
+    cin >> heroName;
     for (int i = 0; i < heroes.size(); i++) {
-        while (heroes[i].getName() == currentHero) {
-            if (heroes[i].getName() == currentHero) {
-                cout << "A hero named '" << currentHero << "' already exists." << endl;
+        while (heroes[i].getName() == heroName) {
+            if (heroes[i].getName() == heroName) {
+                cout << "A hero named '" << heroName << "' already exists." << endl;
                 cout << "Enter a different hero name: ";
-                cin >> currentHero;
+                cin >> heroName;
             }
         }
     }
-    Hero newHero(currentHero, 1, 10, 2, 0);
+    currentHero = heroes.size();
+    Hero newHero(heroName, 1, 10, 2, 0);
     heroes.push_back(newHero);
-    cout << "New hero successfully created: " << newHero.getName() << endl;
-    STATE = MENU;
+    cout << "Hero '" << newHero.getName() << "' was successfully created!" << endl;
+    sleep(3);
+    STATE = ADVENTURE;
 }
 
 int Game::loadHero(vector<Hero>& heroes) {
@@ -70,15 +74,15 @@ int Game::loadHero(vector<Hero>& heroes) {
             "╚══════════════════════════════════╝" << endl;
     cout << "Choose which Hero you want to load: " << endl;
     for (int i = 0; i < heroes.size(); i++) {
-        cout << "(" << i << "), name: " << heroes[i].getName() << "\n" << endl;
+        cout << "- " << heroes[i].getName() << " (" << i << ")" << endl;
     }
     
     while (true) {
         if (cin >> currentHero) {
             if (currentHero >= 0 && currentHero < heroes.size()) {
-                cout << "Hero: " << heroes[currentHero].getName() << " has been chosen. Hero stats:" << "\n" << "Level: "  << heroes[currentHero].getLevel() << "\n" << "Health: " << heroes[currentHero].getHp() << "\n" << "Strength: " << heroes[currentHero].getStrength() << "\n" << "Experience (xp): " << heroes[currentHero].getXp() << endl;
+                cout << "Hero: " << heroes[currentHero].getName() << " has been chosen. Hero stats:" << "\n" << "Level: "  << heroes[currentHero].getLevel() << "\n" << "Health: " << heroes[currentHero].getHp() << "\n" << "Strength: " << heroes[currentHero].getStrength() << "\n" << "Experience (xp): " << heroes[currentHero].getXp() << "\n" << endl;
                 sleep(3);
-                STATE = START_ADVENTURE;
+                STATE = ADVENTURE;
                 return currentHero;
             } else {
                 cout << "Invalid Hero chosen, enter a valid number." << endl;
@@ -110,14 +114,14 @@ int Game::selectEnemy(vector<Enemy> &enemies) {
     }
     
     for (int i = 0; i < enemies.size(); i++) {
-        cout <<"Enemy number: " << i << ", name: " << enemies[i].getName() << endl;
+        cout << "- " << enemies[i].getName() << " (" << i << ")" << endl;
     }
 
     while (true) {
         if (cin >> currentEnemy) {
             if (currentEnemy >= 0 && currentEnemy < enemies.size()) {
-                cout << "Enemy '" << enemies[currentEnemy].getName() << "' has been chosen. Enemy stats:" << "\n" << "Health: " << enemies[currentEnemy].getHp() << "\n" << "Strength: " << enemies[currentEnemy].getStrength() << "\n" << "Experience (xp): " << enemies[currentEnemy].getXp() << endl;
-                sleep(1);
+                cout << "Enemy '" << enemies[currentEnemy].getName() << "' has been chosen. Enemy stats:" << "\n" << "- Health: " << enemies[currentEnemy].getHp() << "\n" << "- Strength: " << enemies[currentEnemy].getStrength() << "\n" << "- Experience (xp): " << enemies[currentEnemy].getXp() << "\n" << endl;
+                sleep(3);
                 STATE = START_BATTLE;
                 return currentEnemy;
             } 
@@ -132,25 +136,44 @@ int Game::selectEnemy(vector<Enemy> &enemies) {
     }
 }
 
+void Game::showStats() {
+    if (heroes.empty()) {
+        cout << "ERROR. Current hero: " << currentHero << endl;
+        STATE = ADVENTURE;
+        sleep(3);
+        return;
+    }
+    
+    cout << "Hero stats:" << "\n" << "Level: "  << heroes[currentHero].getLevel() << "\n" << "Health: " << heroes[currentHero].getHp() << "\n" << "Strength: " << heroes[currentHero].getStrength() << "\n" << "Experience (xp): " << heroes[currentHero].getXp() << "\n" << endl;
+    STATE = ADVENTURE;
+}
+
 void Game::adventure() {
     if (gameStart) {
+        cout << "╔═════════════════════════════════════╗\n"
+                "║      - - - Game Started  - - -      ║\n"
+                "╚═════════════════════════════════════╝" << endl;
         cout << "Welcome to the game!" << endl;
-        cout << "Choose one of the following options:" << endl;
-        cout << "Return to menu (0)" << "\t" << "Fight an enemy (1)" << endl;
         gameStart = false;
     } else {
-        cout << "Do you want to continue your adventure?" << endl;
-        cout << "NO, return to menu (0)" << "\t" << "YES, fight an enemy (1)" << endl;
+        cout << "\n" << "╔═══════════════════════════════════════╗\n"
+                        "║      - - - Game Continued  - - -      ║\n"
+                        "╚═══════════════════════════════════════╝" << endl;
     }
+    
+    cout << "Choose one of the following options:" << endl;
+    cout << "- Return to menu (0)" << "\n" << "- Fight an enemy (1)" << "\n" << "- Show hero stats (2)" << endl;
 
     while(true) {
         if (cin >> userInput) {
             if (userInput == 0) {
                 STATE = MENU;
                 return;
-            }
-            else if (userInput == 1) {
+            } else if (userInput == 1) {
                 STATE = SELECT_ENEMY;
+                return;
+            } else if (userInput == 2) {
+                STATE = SHOW_STATS;
                 return;
             } else {
                 cout << "Input is out of range. Please enter a valid number." << endl;
@@ -182,29 +205,35 @@ int Game::start() {
                     clearScreen();
                     loadHero(heroes);
                 } else {
-                    cout << "No heroes to load, create a new hero..." << endl;
-                    sleep(3);
+                    cout << "No heroes to load, create a new hero...\n" << endl;
+                    sleep(1);
                     createHero(heroes);
                 }
                 break;
             case SELECT_ENEMY:
                 selectEnemy(enemies);
                 break;
-            case START_ADVENTURE:
+            case SHOW_STATS:
+                showStats();
+                break;
+            case ADVENTURE:
+                clearScreen();
                 adventure();
                 break;
-            case START_BATTLE:
-                Battle battle(heroes[currentHero], enemies[currentEnemy]);
-                battle.startBattle();
+            case START_BATTLE: {
+                Battle battle(heroes[currentHero], enemies[currentEnemy]); 
+                battleWon = battle.startBattle();
+                if (!battleWon) return 0;
                 STATE = POST_BATTLE;
                 break;
+            }
             case POST_BATTLE:
                 adventure();
                 break;
             case EXIT:
                 clearScreen();
-                cout << "Exiting the game" << endl;
+                cout << "Exiting the game..." << endl;
                 return 0;
         }
     }
-}   
+}

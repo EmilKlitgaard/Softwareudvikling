@@ -4,7 +4,7 @@
 Enemy::Enemy()
     : name("Enemy"), hp(10), strength(2), xp(0) {}
 
-Enemy::Enemy(const string &newName, const int &newHp, const int &newStrength, const int &newXp)
+Enemy::Enemy(const string newName, const int newHp, const int newStrength, const int newXp)
     : name(newName), hp(newHp), strength(newStrength), xp(newXp) {}
 
 Enemy::~Enemy() {}

@@ -97,19 +97,67 @@ CMakeFiles/Game.dir/Game.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Game.dir/Game.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/emilklitgaard/Workspace/Softwareudvikling/Game.cpp -o CMakeFiles/Game.dir/Game.cpp.s
 
+CMakeFiles/Game.dir/Hero.cpp.o: CMakeFiles/Game.dir/flags.make
+CMakeFiles/Game.dir/Hero.cpp.o: /home/emilklitgaard/Workspace/Softwareudvikling/Hero.cpp
+CMakeFiles/Game.dir/Hero.cpp.o: CMakeFiles/Game.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/emilklitgaard/Workspace/Softwareudvikling/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Game.dir/Hero.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Game.dir/Hero.cpp.o -MF CMakeFiles/Game.dir/Hero.cpp.o.d -o CMakeFiles/Game.dir/Hero.cpp.o -c /home/emilklitgaard/Workspace/Softwareudvikling/Hero.cpp
+
+CMakeFiles/Game.dir/Hero.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Game.dir/Hero.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/emilklitgaard/Workspace/Softwareudvikling/Hero.cpp > CMakeFiles/Game.dir/Hero.cpp.i
+
+CMakeFiles/Game.dir/Hero.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Game.dir/Hero.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/emilklitgaard/Workspace/Softwareudvikling/Hero.cpp -o CMakeFiles/Game.dir/Hero.cpp.s
+
+CMakeFiles/Game.dir/Enemy.cpp.o: CMakeFiles/Game.dir/flags.make
+CMakeFiles/Game.dir/Enemy.cpp.o: /home/emilklitgaard/Workspace/Softwareudvikling/Enemy.cpp
+CMakeFiles/Game.dir/Enemy.cpp.o: CMakeFiles/Game.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/emilklitgaard/Workspace/Softwareudvikling/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Game.dir/Enemy.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Game.dir/Enemy.cpp.o -MF CMakeFiles/Game.dir/Enemy.cpp.o.d -o CMakeFiles/Game.dir/Enemy.cpp.o -c /home/emilklitgaard/Workspace/Softwareudvikling/Enemy.cpp
+
+CMakeFiles/Game.dir/Enemy.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Game.dir/Enemy.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/emilklitgaard/Workspace/Softwareudvikling/Enemy.cpp > CMakeFiles/Game.dir/Enemy.cpp.i
+
+CMakeFiles/Game.dir/Enemy.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Game.dir/Enemy.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/emilklitgaard/Workspace/Softwareudvikling/Enemy.cpp -o CMakeFiles/Game.dir/Enemy.cpp.s
+
+CMakeFiles/Game.dir/Battle.cpp.o: CMakeFiles/Game.dir/flags.make
+CMakeFiles/Game.dir/Battle.cpp.o: /home/emilklitgaard/Workspace/Softwareudvikling/Battle.cpp
+CMakeFiles/Game.dir/Battle.cpp.o: CMakeFiles/Game.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/emilklitgaard/Workspace/Softwareudvikling/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Game.dir/Battle.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Game.dir/Battle.cpp.o -MF CMakeFiles/Game.dir/Battle.cpp.o.d -o CMakeFiles/Game.dir/Battle.cpp.o -c /home/emilklitgaard/Workspace/Softwareudvikling/Battle.cpp
+
+CMakeFiles/Game.dir/Battle.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Game.dir/Battle.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/emilklitgaard/Workspace/Softwareudvikling/Battle.cpp > CMakeFiles/Game.dir/Battle.cpp.i
+
+CMakeFiles/Game.dir/Battle.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Game.dir/Battle.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/emilklitgaard/Workspace/Softwareudvikling/Battle.cpp -o CMakeFiles/Game.dir/Battle.cpp.s
+
 # Object files for target Game
 Game_OBJECTS = \
 "CMakeFiles/Game.dir/main.cpp.o" \
-"CMakeFiles/Game.dir/Game.cpp.o"
+"CMakeFiles/Game.dir/Game.cpp.o" \
+"CMakeFiles/Game.dir/Hero.cpp.o" \
+"CMakeFiles/Game.dir/Enemy.cpp.o" \
+"CMakeFiles/Game.dir/Battle.cpp.o"
 
 # External object files for target Game
 Game_EXTERNAL_OBJECTS =
 
 Game: CMakeFiles/Game.dir/main.cpp.o
 Game: CMakeFiles/Game.dir/Game.cpp.o
+Game: CMakeFiles/Game.dir/Hero.cpp.o
+Game: CMakeFiles/Game.dir/Enemy.cpp.o
+Game: CMakeFiles/Game.dir/Battle.cpp.o
 Game: CMakeFiles/Game.dir/build.make
 Game: CMakeFiles/Game.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/emilklitgaard/Workspace/Softwareudvikling/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable Game"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/emilklitgaard/Workspace/Softwareudvikling/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable Game"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Game.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

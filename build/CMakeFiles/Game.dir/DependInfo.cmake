@@ -8,7 +8,10 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/home/emilklitgaard/Workspace/Softwareudvikling/Battle.cpp" "CMakeFiles/Game.dir/Battle.cpp.o" "gcc" "CMakeFiles/Game.dir/Battle.cpp.o.d"
+  "/home/emilklitgaard/Workspace/Softwareudvikling/Enemy.cpp" "CMakeFiles/Game.dir/Enemy.cpp.o" "gcc" "CMakeFiles/Game.dir/Enemy.cpp.o.d"
   "/home/emilklitgaard/Workspace/Softwareudvikling/Game.cpp" "CMakeFiles/Game.dir/Game.cpp.o" "gcc" "CMakeFiles/Game.dir/Game.cpp.o.d"
+  "/home/emilklitgaard/Workspace/Softwareudvikling/Hero.cpp" "CMakeFiles/Game.dir/Hero.cpp.o" "gcc" "CMakeFiles/Game.dir/Hero.cpp.o.d"
   "/home/emilklitgaard/Workspace/Softwareudvikling/main.cpp" "CMakeFiles/Game.dir/main.cpp.o" "gcc" "CMakeFiles/Game.dir/main.cpp.o.d"
   )
 
