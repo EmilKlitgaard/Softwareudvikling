@@ -3,6 +3,8 @@
 #include <unistd.h>
 
 #include "Game.h"
+#include "Hero.h"
+#include "Enemy.h"
 
 using namespace std;
 

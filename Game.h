@@ -4,6 +4,7 @@
 #include <string>
 
 #include "Hero.h"
+#include "Enemy.h"
 
 using namespace std;
 

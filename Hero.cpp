@@ -1,4 +1,4 @@
-#include "HeroClass.h"
+#include "Hero.h"
 #include <iostream>
 
 Hero::Hero() 

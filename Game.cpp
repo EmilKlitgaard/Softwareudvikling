@@ -4,6 +4,7 @@
 #include <unistd.h>
 
 #include "Hero.h"
+#include "Enemy.h"
 
 Game::Game() {}
 Game::~Game() {}
