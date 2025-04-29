@@ -60,19 +60,19 @@ void Game::createHero(vector<Hero> &heroes){
             }
         }
     }
-    currentHero = heroes.size();
     Hero newHero(heroName, 1, 10, 2, 0);
     heroes.push_back(newHero);
+    currentHero = heroes.size() - 1;
     cout << "Hero '" << newHero.getName() << "' was successfully created!" << endl;
     sleep(3);
     STATE = ADVENTURE;
 }
 
-int Game::loadHero(vector<Hero>& heroes) {
+int Game::loadHero(vector<Hero> &heroes) {
     cout << "╔══════════════════════════════════╗\n"
             "║      - - - Load Hero  - - -      ║\n"
             "╚══════════════════════════════════╝" << endl;
-    cout << "Choose which Hero you want to load: " << endl;
+    cout << "Choose which hero you want to load: " << endl;
     for (int i = 0; i < heroes.size(); i++) {
         cout << "- " << heroes[i].getName() << " (" << i << ")" << endl;
     }
@@ -136,16 +136,10 @@ int Game::selectEnemy(vector<Enemy> &enemies) {
     }
 }
 
-void Game::showStats() {
-    if (heroes.empty()) {
-        cout << "ERROR. Current hero: " << currentHero << endl;
-        STATE = ADVENTURE;
-        sleep(3);
-        return;
-    }
-    
+void Game::showStats(vector<Hero> &heroes) {    
     cout << "Hero stats:" << "\n" << "Level: "  << heroes[currentHero].getLevel() << "\n" << "Health: " << heroes[currentHero].getHp() << "\n" << "Strength: " << heroes[currentHero].getStrength() << "\n" << "Experience (xp): " << heroes[currentHero].getXp() << "\n" << endl;
     STATE = ADVENTURE;
+    sleep(5);
 }
 
 void Game::adventure() {
@@ -156,9 +150,9 @@ void Game::adventure() {
         cout << "Welcome to the game!" << endl;
         gameStart = false;
     } else {
-        cout << "\n" << "╔═══════════════════════════════════════╗\n"
-                        "║      - - - Game Continued  - - -      ║\n"
-                        "╚═══════════════════════════════════════╝" << endl;
+        cout << "╔═══════════════════════════════════════╗\n"
+                "║      - - - Game Continued  - - -      ║\n"
+                "╚═══════════════════════════════════════╝" << endl;
     }
     
     cout << "Choose one of the following options:" << endl;
@@ -214,7 +208,7 @@ int Game::start() {
                 selectEnemy(enemies);
                 break;
             case SHOW_STATS:
-                showStats();
+                showStats(heroes);
                 break;
             case ADVENTURE:
                 clearScreen();
@@ -228,6 +222,7 @@ int Game::start() {
                 break;
             }
             case POST_BATTLE:
+                clearScreen();
                 adventure();
                 break;
             case EXIT:

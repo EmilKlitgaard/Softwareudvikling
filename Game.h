@@ -28,7 +28,7 @@ class Game {
         
         int start();
         void menu();
-        void showStats();
+        void showStats(vector<Hero> &heroes);
         void adventure();
         void clearScreen();
         void createHero(vector<Hero> &heroes);

@@ -15,21 +15,22 @@ Battle::~Battle() {}
 
 void Battle::gameOver() {
     cout << hero.getName() << " is defeated!" << "\n" << endl;
-    sleep(3);
+    sleep(1);
     cout << "╔══════════════════════════════════╗\n"
             "║      * * * GAME OVER  * * *      ║\n"
             "╚══════════════════════════════════╝" << endl;
     sleep(1);
-    cout << "Exiting the game in 5..." << endl;
-    sleep(1);
-    cout << "4..." << endl;
-    sleep(1);
-    cout << "3..." << endl;
-    sleep(1);
-    cout << "2..." << endl;
-    sleep(1);
-    cout << "1..." << endl;
-    sleep(1);
+    cout << "Exiting the game in ";
+    for (int i = 3; i > 0; i--) {
+        cout << i;
+        sleep(1);
+        for (int j = 3; j > 0; j--) {
+            cout.flush();
+            cout << ".";
+            sleep(1);
+        }
+    }
+    cout << endl;
 }
 
 void Battle::awaitEnter() {
@@ -55,13 +56,11 @@ bool Battle::startBattle() {
         if (enemyHp <= 0) {
             cout << enemy.getName() << " is defeated!" << endl;
             cout << hero.getName() << " has won!" << endl;
-
             hero.addXp(enemy.getXp());
-
             while (hero.getXp() >= hero.getLevel() * 1000) {
                 hero.levelUp();
-                sleep(1);
             }
+            sleep(5);
             return true;
         }
 
