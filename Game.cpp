@@ -132,44 +132,26 @@ int Game::selectEnemy(vector<Enemy> &enemies) {
     }
 }
 
-int Game::startAdventure() {
-    cout << "Welcome to the game!" << endl;
-    cout << "Choose one of the following options:" << endl;
-    cout << "Return to menu (0)" << "\t" << "Fight an enemy (1)" << endl;
-    
-    while (true) {
-        if (cin >> userInput) {
-            if (userInput == 0) {
-                STATE = MENU;
-                return 0;
-            }
-            else if (userInput == 1) {
-                STATE = SELECT_ENEMY;
-                return 0;
-            } else {
-                cout << "Input is out of range. Please enter a valid number." << endl;
-            }
-        } else {
-            cout << "Invalid input. Please enter a number." << endl;
-            cin.clear(); 
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        }
+void Game::adventure() {
+    if (gameStart) {
+        cout << "Welcome to the game!" << endl;
+        cout << "Choose one of the following options:" << endl;
+        cout << "Return to menu (0)" << "\t" << "Fight an enemy (1)" << endl;
+        gameStart = false;
+    } else {
+        cout << "Do you want to continue your adventure?" << endl;
+        cout << "NO, return to menu (0)" << "\t" << "YES, fight an enemy (1)" << endl;
     }
-}
-
-int Game::Adventure() {
-    cout << "Do you want to continue your adventure?" << endl;
-    cout << "NO, return to menu (0)" << "\t" << "YES, fight an enemy (1)" << endl;
 
     while(true) {
         if (cin >> userInput) {
             if (userInput == 0) {
                 STATE = MENU;
-                return 0;
+                return;
             }
             else if (userInput == 1) {
                 STATE = SELECT_ENEMY;
-                return 0;
+                return;
             } else {
                 cout << "Input is out of range. Please enter a valid number." << endl;
             }
@@ -209,7 +191,7 @@ int Game::start() {
                 selectEnemy(enemies);
                 break;
             case START_ADVENTURE:
-                startAdventure();
+                adventure();
                 break;
             case START_BATTLE:
                 Battle battle(heroes[currentHero], enemies[currentEnemy]);
@@ -217,7 +199,7 @@ int Game::start() {
                 STATE = POST_BATTLE;
                 break;
             case POST_BATTLE:
-                Adventure();
+                adventure();
                 break;
             case EXIT:
                 clearScreen();

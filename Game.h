@@ -26,12 +26,11 @@ class Game {
         
         int start();
         void menu();
+        void adventure();
         void clearScreen();
         void createHero(vector<Hero> &heroes);
         int loadHero(vector<Hero> &heroes);
         int selectEnemy(vector<Enemy> &enemies); 
-        int startAdventure();
-        int Adventure();
         
     private:
         vector<Hero> heroes;
@@ -40,6 +39,8 @@ class Game {
         int currentHero = -1; 
         int currentEnemy = -1;
         int userInput = -1;
+        
+        bool gameStart = true;
         
         State STATE = MENU;
 };
