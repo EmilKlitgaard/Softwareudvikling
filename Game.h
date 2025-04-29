@@ -12,7 +12,7 @@ enum State {
     MENU,
     CREATE_HERO,
     LOAD_HERO,
-    LOAD_ENEMY,
+    SELECT_ENEMY,
     START_ADVENTURE,
     START_BATTLE,
     POST_BATTLE,
@@ -29,7 +29,7 @@ class Game {
         void clearScreen();
         void createHero(vector<Hero> &heroes);
         int loadHero(vector<Hero> &heroes);
-        int enemyLoad(vector<Enemy> &enemies); 
+        int selectEnemy(vector<Enemy> &enemies); 
         int startAdventure();
         int Adventure();
         

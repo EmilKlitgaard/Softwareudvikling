@@ -20,7 +20,6 @@ void Game::menu() {
     cout << "Choose one of the following options: " << endl;
     cout << "Create new Hero (1)" << "\t" << "Load Hero (2)" << "\t" << "Exit game (3)" << endl;
     
-    int userInput;
     while (true) {
         if (cin >> userInput) {
             if (userInput == 1) {
@@ -36,8 +35,8 @@ void Game::menu() {
             break;
         } else {
             cout << "Invalid input. Please enter a number." << endl;
-            cin.clear(); // clear the error flag
-            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // discard the invalid input
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
         }
     }
 }
@@ -74,7 +73,6 @@ int Game::loadHero(vector<Hero>& heroes) {
         cout << "(" << i << "), name: " << heroes[i].getName() << "\n" << endl;
     }
     
-    int currentHero;
     while (true) {
         if (cin >> currentHero) {
             if (currentHero >= 0 && currentHero < heroes.size()) {
@@ -87,14 +85,16 @@ int Game::loadHero(vector<Hero>& heroes) {
             }
         } else {
             cout << "Invalid input. Please enter a number." << endl;
+            cin.clear(); 
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
         }
     } 
 }
 
-int Game::enemyLoad(vector<Enemy>& enemies) {
-    cout << "╔═══════════════════════════════════╗\n"
-            "║      - - - Load Enemy  - - -      ║\n"
-            "╚═══════════════════════════════════╝" << endl;
+int Game::selectEnemy(vector<Enemy> &enemies) {
+    cout << "╔═════════════════════════════════════╗\n"
+            "║      - - - Select Enemy  - - -      ║\n"
+            "╚═════════════════════════════════════╝" << endl;
     
     cout << "Choose which Enemy you want to fight: " << endl;
     
@@ -113,7 +113,6 @@ int Game::enemyLoad(vector<Enemy>& enemies) {
         cout <<"Enemy number: " << i << ", name: " << enemies[i].getName() << endl;
     }
 
-    int currentEnemy;
     while (true) {
         if (cin >> currentEnemy) {
             if (currentEnemy >= 0 && currentEnemy < enemies.size()) {
@@ -127,6 +126,8 @@ int Game::enemyLoad(vector<Enemy>& enemies) {
             }
         } else {
             cout << "Invalid input. Please enter a number." << endl;
+            cin.clear(); 
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
         }
     }
 }
@@ -136,7 +137,6 @@ int Game::startAdventure() {
     cout << "Choose one of the following options:" << endl;
     cout << "Return to menu (0)" << "\t" << "Fight an enemy (1)" << endl;
     
-    int userInput;
     while (true) {
         if (cin >> userInput) {
             if (userInput == 0) {
@@ -144,13 +144,15 @@ int Game::startAdventure() {
                 return 0;
             }
             else if (userInput == 1) {
-                STATE = LOAD_ENEMY;
+                STATE = SELECT_ENEMY;
                 return 0;
             } else {
                 cout << "Input is out of range. Please enter a valid number." << endl;
             }
         } else {
             cout << "Invalid input. Please enter a number." << endl;
+            cin.clear(); 
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
         }
     }
 }
@@ -160,20 +162,21 @@ int Game::Adventure() {
     cout << "NO, return to menu (0)" << "\t" << "YES, fight an enemy (1)" << endl;
 
     while(true) {
-        int userInput;
         if (cin >> userInput) {
             if (userInput == 0) {
                 STATE = MENU;
                 return 0;
             }
             else if (userInput == 1) {
-                STATE = LOAD_ENEMY;
+                STATE = SELECT_ENEMY;
                 return 0;
             } else {
                 cout << "Input is out of range. Please enter a valid number." << endl;
             }
         } else {
             cout << "Invalid input. Please enter a number." << endl;
+            cin.clear(); 
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
         }
     }
 }
@@ -202,8 +205,8 @@ int Game::start() {
                     createHero(heroes);
                 }
                 break;
-            case LOAD_ENEMY:
-                loadEnemy(enemies);
+            case SELECT_ENEMY:
+                selectEnemy(enemies);
                 break;
             case START_ADVENTURE:
                 startAdventure();
