@@ -10,23 +10,23 @@ Hero::Hero(const string newName, const int newLevel, const int newHp, const int 
 
 Hero::~Hero() {}
 
-string Hero::getName() {
+string Hero::getName() const {
     return name;
 }
 
-int Hero::getHp(){
+int Hero::getHp() const {
     return hp;
 }
 
-int Hero::getStrength(){
+int Hero::getStrength() const {
     return strength;
 }
 
-int Hero::getXp(){
+int Hero::getXp() const {
     return xp;
 }
 
-int Hero::getLevel(){
+int Hero::getLevel() const {
     return level;
 }
 

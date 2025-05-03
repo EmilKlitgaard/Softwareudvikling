@@ -36,6 +36,9 @@ class Game {
         int selectEnemy(vector<Enemy> &enemies); 
         void gameOver(vector<Hero> &heroes);
         
+        void saveHeroesToFile(vector<Hero> &heroes, const string &filename = "Heroes.txt");
+        void loadHeroesFromFile(vector<Hero> &heroes, const string &filename = "Heroes.txt");
+
     private:
         vector<Hero> heroes;
         vector<Enemy> enemies;

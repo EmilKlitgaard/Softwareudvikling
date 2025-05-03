@@ -3,6 +3,7 @@
 #include <limits>
 #include <chrono>
 #include <thread>
+#include <fstream>
 #include <unistd.h>
 
 #include "Game.h"
@@ -16,6 +17,33 @@ Game::~Game() {}
 void Game::clearScreen() {
     system("clear"); 
 }
+
+void Game::saveHeroesToFile(vector<Hero> &heroes, const string &filename) {
+    ofstream outFile(filename);
+    if (!outFile) {
+        cerr << "Error saving heroes to file.\n";
+        return;
+    }
+    for (const auto& hero : heroes) {
+        outFile << hero.getName() << " " << hero.getLevel() << " " << hero.getHp() << " " << hero.getStrength() << " " << hero.getXp() << "\n";
+    }
+    outFile.close();
+}
+
+void Game::loadHeroesFromFile(vector<Hero> &heroes, const string &filename) {
+    ifstream inFile(filename);
+    if (!inFile) {
+        cerr << "No saved hero file found. Starting fresh.\n";
+        return;
+    }
+    string name;
+    int level, hp, strength, xp;
+    while (inFile >> name >> level >> hp >> strength >> xp) {
+        heroes.emplace_back(name, level, hp, strength, xp);
+    }
+    inFile.close();
+}
+
 
 void Game::menu() {
     cout << "╔═════════════════════════════╗\n"
@@ -65,9 +93,10 @@ void Game::createHero(vector<Hero> &heroes){
     Hero newHero(heroName, 1, 10, 2, 0);
     heroes.push_back(newHero);
     currentHero = heroes.size() - 1;
+    saveHeroesToFile(heroes);
     cout << "Hero '" << newHero.getName() << "' was successfully created!" << endl;
-    sleep(3);
     STATE = ADVENTURE;
+    sleep(3);
 }
 
 int Game::loadHero(vector<Hero> &heroes) {
@@ -193,19 +222,21 @@ void Game::gameOver(vector<Hero> &heroes) {
     for (int i = 5; i > 0; i--) {
         cout << i;
         cout.flush();
-        std::this_thread::sleep_for(std::chrono::milliseconds(250));
+        this_thread::sleep_for(chrono::milliseconds(250));
         for (int j = 0; j < 3; j++) {
             cout << ".";
             cout.flush();
-            std::this_thread::sleep_for(std::chrono::milliseconds(250));
+            this_thread::sleep_for(chrono::milliseconds(250));
         }
     }
     cout << endl;
+    saveHeroesToFile(heroes);
 }
 
 int Game::start() {
     vector<Hero> heroes;
     vector<Enemy> enemies;
+    loadHeroesFromFile(heroes);
 
     while (true) {
         switch (STATE) {
@@ -240,6 +271,7 @@ int Game::start() {
             case START_BATTLE: {
                 Battle battle(heroes[currentHero], enemies[currentEnemy]); 
                 battleWon = battle.startBattle();
+                saveHeroesToFile(heroes);
                 if (!battleWon) {
                     gameOver(heroes);
                     STATE = MENU;

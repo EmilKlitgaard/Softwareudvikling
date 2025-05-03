@@ -11,11 +11,11 @@ class Hero {
         
         Hero(const string, const int, const int, const int, const int);
         
-        string getName();
-        int getHp();
-        int getStrength();
-        int getXp();
-        int getLevel();
+        string getName() const;
+        int getLevel() const;
+        int getHp() const;
+        int getStrength() const;
+        int getXp() const;
         
         void addXp(const int);
         int levelUp();
