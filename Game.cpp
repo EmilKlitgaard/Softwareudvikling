@@ -169,6 +169,46 @@ int Game::selectEnemy(vector<Enemy> &enemies) {
     }
 }
 
+int Game::selectCave(vector<Hero> &heroes) {
+    cout << "╔════════════════════════════════════╗\n"
+            "║      - - - Select Cave  - - -      ║\n"
+            "╚════════════════════════════════════╝" << endl;
+
+    cout << "Choose which cave you want to explore:" << endl;
+
+    vector<Cave> caves;
+
+    for (int i = 0; i < 5; ++i) {
+        Cave cave = Factory::createCave(heroes[currentHero]);
+        caves.push_back(cave);
+        cout << "- " << cave.getName() << ".\t Difficulty: " << cave.getLevel() << " (" << i << ")" << endl;
+    }
+    
+    while (true) {
+        if (cin >> currentCave) {
+            if (currentCave >= 0 && currentCave < caves.size()) {
+                cout << "Cave '" << caves[currentCave].getName() << "' has been chosen. Cave monsters:" << endl;
+                const vector<Monster> &monsters = caves[currentCave].getMonsters();
+                for (const Monster& monster : monsters) {
+                    cout << "- ";
+                    monster.display();
+                }
+                sleep(3);
+                STATE = START_CAVE;
+                return currentCave;
+            } 
+            else {
+                cout << "Invalid cave chosen, type a valid number." << endl;
+            }
+        } else {
+            cout << "Invalid input. Please enter a number." << endl;
+            cin.clear(); 
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+    }
+}
+
+
 void Game::showStats(vector<Hero> &heroes) {    
     cout << "Hero stats:" << "\n" << "Level: "  << heroes[currentHero].getLevel() << "\n" << "Health: " << heroes[currentHero].getHp() << "\n" << "Strength: " << heroes[currentHero].getStrength() << "\n" << "Experience (xp): " << heroes[currentHero].getXp() << "\n" << endl;
     STATE = ADVENTURE;
@@ -189,7 +229,7 @@ void Game::adventure() {
     }
     
     cout << "Choose one of the following options:" << endl;
-    cout << "- Return to menu (0)" << "\n" << "- Fight an enemy (1)" << "\n" << "- Show hero stats (2)" << endl;
+    cout << "- Return to menu (0)" << "\n" << "- Fight an enemy (1)" << "\n" << "- Explore caves (2)" << "\n" << "- Show hero stats (3)" << endl;
 
     while(true) {
         if (cin >> userInput) {
@@ -200,6 +240,9 @@ void Game::adventure() {
                 STATE = SELECT_ENEMY;
                 return;
             } else if (userInput == 2) {
+                STATE = SELECT_CAVE;
+                return;
+            } else if (userInput == 3) {
                 STATE = SHOW_STATS;
                 return;
             } else {
@@ -264,6 +307,9 @@ int Game::start() {
                 break;
             case SELECT_ENEMY:
                 selectEnemy(enemies);
+                break;
+            case SELECT_CAVE:
+                selectCave(heroes);
                 break;
             case SHOW_STATS:
                 showStats(heroes);

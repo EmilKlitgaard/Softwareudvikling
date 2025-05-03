@@ -12,6 +12,6 @@ using namespace std;
 class Factory {
     public:
         static Monster createMonster(int level);
-        static Dungeon createCave(const Hero& hero);
+        static Cave createCave(const Hero &hero);
 };
 

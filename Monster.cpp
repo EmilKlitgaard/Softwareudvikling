@@ -8,7 +8,7 @@ Monster::Monster(string name, int hp, int strength, int xp)
     : name(name), hp(hp), strength(strength), xp(xp) {}
 
 void Monster::display() const {
-    cout << name << " (HP: " << hp << ", Strength: " << strength << ", Xp: " << xp << ")\n";
+    cout << name << " (Hp: " << hp << ", Strength: " << strength << ", Xp: " << xp << ")\n";
 }
 
 int Monster::getHp() const { 

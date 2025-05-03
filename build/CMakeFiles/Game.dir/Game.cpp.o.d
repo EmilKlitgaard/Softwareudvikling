@@ -178,4 +178,7 @@ CMakeFiles/Game.dir/Game.cpp.o: \
  /home/emilklitgaard/Workspace/Softwareudvikling/Game.h \
  /home/emilklitgaard/Workspace/Softwareudvikling/Hero.h \
  /home/emilklitgaard/Workspace/Softwareudvikling/Enemy.h \
- /home/emilklitgaard/Workspace/Softwareudvikling/Battle.h
+ /home/emilklitgaard/Workspace/Softwareudvikling/Battle.h \
+ /home/emilklitgaard/Workspace/Softwareudvikling/Cave.h \
+ /home/emilklitgaard/Workspace/Softwareudvikling/Monster.h \
+ /home/emilklitgaard/Workspace/Softwareudvikling/Factory.h

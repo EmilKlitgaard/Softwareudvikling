@@ -1,5 +1,5 @@
-CMakeFiles/Game.dir/main.cpp.o: \
- /home/emilklitgaard/Workspace/Softwareudvikling/main.cpp \
+CMakeFiles/Game.dir/Cave.cpp.o: \
+ /home/emilklitgaard/Workspace/Softwareudvikling/Cave.cpp \
  /usr/include/stdc-predef.h /usr/include/c++/13/iostream \
  /usr/include/c++/13/bits/requires_hosted.h \
  /usr/include/aarch64-linux-gnu/c++/13/bits/c++config.h \
@@ -150,22 +150,10 @@ CMakeFiles/Game.dir/main.cpp.o: \
  /usr/include/c++/13/bits/locale_facets.tcc \
  /usr/include/c++/13/bits/basic_ios.tcc \
  /usr/include/c++/13/bits/ostream.tcc /usr/include/c++/13/istream \
- /usr/include/c++/13/bits/istream.tcc /usr/include/c++/13/vector \
- /usr/include/c++/13/bits/stl_uninitialized.h \
+ /usr/include/c++/13/bits/istream.tcc \
+ /home/emilklitgaard/Workspace/Softwareudvikling/Cave.h \
+ /usr/include/c++/13/vector /usr/include/c++/13/bits/stl_uninitialized.h \
  /usr/include/c++/13/bits/stl_vector.h \
  /usr/include/c++/13/bits/stl_bvector.h \
- /usr/include/c++/13/bits/vector.tcc /usr/include/unistd.h \
- /usr/include/aarch64-linux-gnu/bits/posix_opt.h \
- /usr/include/aarch64-linux-gnu/bits/environments.h \
- /usr/include/aarch64-linux-gnu/bits/confname.h \
- /usr/include/aarch64-linux-gnu/bits/getopt_posix.h \
- /usr/include/aarch64-linux-gnu/bits/getopt_core.h \
- /usr/include/aarch64-linux-gnu/bits/unistd_ext.h \
- /usr/include/linux/close_range.h \
- /home/emilklitgaard/Workspace/Softwareudvikling/Game.h \
- /home/emilklitgaard/Workspace/Softwareudvikling/Hero.h \
- /home/emilklitgaard/Workspace/Softwareudvikling/Enemy.h \
- /home/emilklitgaard/Workspace/Softwareudvikling/Battle.h \
- /home/emilklitgaard/Workspace/Softwareudvikling/Cave.h \
- /home/emilklitgaard/Workspace/Softwareudvikling/Monster.h \
- /home/emilklitgaard/Workspace/Softwareudvikling/Factory.h
+ /usr/include/c++/13/bits/vector.tcc \
+ /home/emilklitgaard/Workspace/Softwareudvikling/Monster.h

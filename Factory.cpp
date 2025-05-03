@@ -8,15 +8,15 @@ Monster Factory::createMonster(int level) {
     string type = types[rand() % types.size()];
     string name = adjective + " " + type;
     
-    int hp = 20 + rand() % (level * 10);
-    int strength = 5 + rand() % (level * 2);
-    int xp = 10 + rand() % (level * 5);
+    int hp = 10 + rand() % (level * 10);
+    int strength = 2 + rand() % (level * 2);
+    int xp = 100 + rand() % (level * 150);
     
     if (adjective == "Weak") strength -= 2;
     else if (adjective == "Fierce") strength += 1;
     else if (adjective == "Strong") strength += 2;
 
-    if (type == "Goblin") hp -= 15;
+    if (type == "Goblin") hp -= 10;
     else if (type == "Orc") hp -= 5;
     else if (type == "Troll") hp += 2;
     else if (type == "Unicorn") hp += 10;
@@ -25,17 +25,22 @@ Monster Factory::createMonster(int level) {
     return Monster(name, hp, strength, xp);
 }
 
-Cave Factory::createCave(const Hero& hero) {
-    int level = hero.getLevel();
+Cave Factory::createCave(const Hero &hero) {
+    int caveLevel = 1 + rand() % (hero.getLevel() * 2);
     int numMonsters = 1 + rand() % 5;
-    int goldReward = 50 + level * 20;
+    int gold = 50 + caveLevel * 20;
 
     vector<Monster> monsters;
     for (int i = 0; i < numMonsters; ++i) {
-        monsters.push_back(createMonster(level));
+        monsters.push_back(createMonster(caveLevel));
     }
 
-    string caveName = "Cave of Level " + to_string(level);
-    return Cave(caveName, goldReward, monsters);
+    vector<string> descriptors = {"Shadow", "Fiery", "Frozen", "Ancient", "Whispering", "Cursed", "Echoing", "Murky"};
+    vector<string> features = {"Abyss", "Sanctum", "Cavern", "Maze", "Pit"};
+
+    string caveName = descriptors[rand() % descriptors.size()] + " " +
+                      features[rand() % features.size()];
+
+    return Cave(caveName, caveLevel, gold, monsters);
 }
 

@@ -153,6 +153,30 @@ Battle.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Game.dir/build.make CMakeFiles/Game.dir/Battle.cpp.s
 .PHONY : Battle.cpp.s
 
+Cave.o: Cave.cpp.o
+.PHONY : Cave.o
+
+# target to build an object file
+Cave.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Game.dir/build.make CMakeFiles/Game.dir/Cave.cpp.o
+.PHONY : Cave.cpp.o
+
+Cave.i: Cave.cpp.i
+.PHONY : Cave.i
+
+# target to preprocess a source file
+Cave.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Game.dir/build.make CMakeFiles/Game.dir/Cave.cpp.i
+.PHONY : Cave.cpp.i
+
+Cave.s: Cave.cpp.s
+.PHONY : Cave.s
+
+# target to generate assembly for a file
+Cave.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Game.dir/build.make CMakeFiles/Game.dir/Cave.cpp.s
+.PHONY : Cave.cpp.s
+
 Enemy.o: Enemy.cpp.o
 .PHONY : Enemy.o
 
@@ -176,6 +200,30 @@ Enemy.s: Enemy.cpp.s
 Enemy.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Game.dir/build.make CMakeFiles/Game.dir/Enemy.cpp.s
 .PHONY : Enemy.cpp.s
+
+Factory.o: Factory.cpp.o
+.PHONY : Factory.o
+
+# target to build an object file
+Factory.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Game.dir/build.make CMakeFiles/Game.dir/Factory.cpp.o
+.PHONY : Factory.cpp.o
+
+Factory.i: Factory.cpp.i
+.PHONY : Factory.i
+
+# target to preprocess a source file
+Factory.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Game.dir/build.make CMakeFiles/Game.dir/Factory.cpp.i
+.PHONY : Factory.cpp.i
+
+Factory.s: Factory.cpp.s
+.PHONY : Factory.s
+
+# target to generate assembly for a file
+Factory.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Game.dir/build.make CMakeFiles/Game.dir/Factory.cpp.s
+.PHONY : Factory.cpp.s
 
 Game.o: Game.cpp.o
 .PHONY : Game.o
@@ -225,6 +273,30 @@ Hero.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Game.dir/build.make CMakeFiles/Game.dir/Hero.cpp.s
 .PHONY : Hero.cpp.s
 
+Monster.o: Monster.cpp.o
+.PHONY : Monster.o
+
+# target to build an object file
+Monster.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Game.dir/build.make CMakeFiles/Game.dir/Monster.cpp.o
+.PHONY : Monster.cpp.o
+
+Monster.i: Monster.cpp.i
+.PHONY : Monster.i
+
+# target to preprocess a source file
+Monster.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Game.dir/build.make CMakeFiles/Game.dir/Monster.cpp.i
+.PHONY : Monster.cpp.i
+
+Monster.s: Monster.cpp.s
+.PHONY : Monster.s
+
+# target to generate assembly for a file
+Monster.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Game.dir/build.make CMakeFiles/Game.dir/Monster.cpp.s
+.PHONY : Monster.cpp.s
+
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -261,15 +333,24 @@ help:
 	@echo "... Battle.o"
 	@echo "... Battle.i"
 	@echo "... Battle.s"
+	@echo "... Cave.o"
+	@echo "... Cave.i"
+	@echo "... Cave.s"
 	@echo "... Enemy.o"
 	@echo "... Enemy.i"
 	@echo "... Enemy.s"
+	@echo "... Factory.o"
+	@echo "... Factory.i"
+	@echo "... Factory.s"
 	@echo "... Game.o"
 	@echo "... Game.i"
 	@echo "... Game.s"
 	@echo "... Hero.o"
 	@echo "... Hero.i"
 	@echo "... Hero.s"
+	@echo "... Monster.o"
+	@echo "... Monster.i"
+	@echo "... Monster.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
