@@ -1,6 +1,8 @@
 #pragma once
-#include "Monster.h"
+
 #include <vector>
+
+#include "Monster.h"
 
 using namespace std;
 
