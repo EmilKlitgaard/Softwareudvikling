@@ -13,26 +13,6 @@ Battle::Battle(Hero &newHero, Enemy &newEnemy)
 
 Battle::~Battle() {}
 
-void Battle::gameOver() {
-    cout << hero.getName() << " is defeated!" << "\n" << endl;
-    sleep(1);
-    cout << "╔══════════════════════════════════╗\n"
-            "║      * * * GAME OVER  * * *      ║\n"
-            "╚══════════════════════════════════╝" << endl;
-    sleep(1);
-    cout << "Exiting the game in ";
-    for (int i = 3; i > 0; i--) {
-        cout << i;
-        sleep(1);
-        for (int j = 3; j > 0; j--) {
-            cout.flush();
-            cout << ".";
-            sleep(1);
-        }
-    }
-    cout << endl;
-}
-
 void Battle::awaitEnter() {
     cin.ignore();
     cin.get();
@@ -70,7 +50,8 @@ bool Battle::startBattle() {
         cout << enemy.getName() << " attacks " << hero.getName() << " for " << enemy.getStrength() << " damage. " << hero.getName() << " HP: " << heroHp << endl;
 
         if (heroHp <= 0) {
-            gameOver();
+            cout << hero.getName() << " is defeated!" << "\n" << endl;
+            sleep(1);
             return false;
         }
         sleep(3);

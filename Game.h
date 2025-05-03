@@ -34,6 +34,7 @@ class Game {
         void createHero(vector<Hero> &heroes);
         int loadHero(vector<Hero> &heroes);
         int selectEnemy(vector<Enemy> &enemies); 
+        void gameOver(vector<Hero> &heroes);
         
     private:
         vector<Hero> heroes;

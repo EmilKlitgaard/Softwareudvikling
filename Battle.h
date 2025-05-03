@@ -11,7 +11,6 @@ class Battle {
         ~Battle();
 
         bool startBattle();
-        void gameOver();
         void awaitEnter();
 
     private:

@@ -1,6 +1,8 @@
 #include <iostream>
 #include <vector>
 #include <limits>
+#include <chrono>
+#include <thread>
 #include <unistd.h>
 
 #include "Game.h"
@@ -103,7 +105,7 @@ int Game::selectEnemy(vector<Enemy> &enemies) {
     cout << "Choose which Enemy you want to fight: " << endl;
     
     if (enemies.empty()) {
-        enemies.emplace_back("Horse", 4, 1, 1500);
+        enemies.emplace_back("Horse", 4, 1, 150);
         enemies.emplace_back("Weak Goblin", 4, 2, 200);
         enemies.emplace_back("Strong Goblin", 8, 3, 400);
         enemies.emplace_back("Stronger Goblin", 10, 4, 500);
@@ -144,15 +146,15 @@ void Game::showStats(vector<Hero> &heroes) {
 
 void Game::adventure() {
     if (gameStart) {
-        cout << "╔═════════════════════════════════════╗\n"
-                "║      - - - Game Started  - - -      ║\n"
-                "╚═════════════════════════════════════╝" << endl;
+        cout << "╔══════════════════════════════════════════╗\n"
+                "║      - - - Adventure Started  - - -      ║\n"
+                "╚══════════════════════════════════════════╝" << endl;
         cout << "Welcome to the game!" << endl;
         gameStart = false;
     } else {
-        cout << "╔═══════════════════════════════════════╗\n"
-                "║      - - - Game Continued  - - -      ║\n"
-                "╚═══════════════════════════════════════╝" << endl;
+        cout << "╔════════════════════════════════════════════╗\n"
+                "║      - - - Adventure Continued  - - -      ║\n"
+                "╚════════════════════════════════════════════╝" << endl;
     }
     
     cout << "Choose one of the following options:" << endl;
@@ -178,6 +180,27 @@ void Game::adventure() {
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
         }
     }
+}
+
+void Game::gameOver(vector<Hero> &heroes) {
+    cout << "╔══════════════════════════════════╗\n"
+            "║      * * * GAME OVER  * * *      ║\n"
+            "╚══════════════════════════════════╝" << endl;
+    sleep(1);
+    heroes.erase(heroes.begin() + currentHero);
+    currentHero = -1;
+    cout << "Returning to main menu in ";
+    for (int i = 5; i > 0; i--) {
+        cout << i;
+        cout.flush();
+        std::this_thread::sleep_for(std::chrono::milliseconds(250));
+        for (int j = 0; j < 3; j++) {
+            cout << ".";
+            cout.flush();
+            std::this_thread::sleep_for(std::chrono::milliseconds(250));
+        }
+    }
+    cout << endl;
 }
 
 int Game::start() {
@@ -217,7 +240,11 @@ int Game::start() {
             case START_BATTLE: {
                 Battle battle(heroes[currentHero], enemies[currentEnemy]); 
                 battleWon = battle.startBattle();
-                if (!battleWon) return 0;
+                if (!battleWon) {
+                    gameOver(heroes);
+                    STATE = MENU;
+                    break;
+                }
                 STATE = POST_BATTLE;
                 break;
             }

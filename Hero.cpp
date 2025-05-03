@@ -35,10 +35,10 @@ void Hero::addXp(int addXp) {
 }
 
 int Hero::levelUp() {
+    xp -= level * 1000;
     level++;
     strength += 1;
     hp += 2;
-    xp = 0;
     cout << name << " leveled up to " << level << "!" << endl;
     return level;
 }
