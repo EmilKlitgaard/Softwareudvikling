@@ -55,7 +55,7 @@ bool Battle::startBattle() {
             sleep(1);
             return false;
         }
-        sleep(3);
+        sleep(1);
     }
     return false;
 }

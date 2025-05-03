@@ -15,6 +15,14 @@ void Cave::display() const {
     }
 }
 
-const vector<Monster>& Cave::getMonsters() const { return monsters; }
-int Cave::getGoldReward() const { return goldReward; }
-string Cave::getName() const { return name; }
+const vector<Monster> &Cave::getMonsters() const { 
+    return monsters; 
+}
+
+int Cave::getGoldReward() const { 
+    return goldReward; 
+}
+
+string Cave::getName() const { 
+    return name; 
+}

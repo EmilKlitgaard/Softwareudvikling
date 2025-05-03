@@ -10,8 +10,8 @@
 using namespace std;
 
 class Factory {
-public:
-    static Monster createMonster(int level);
-    static Dungeon createCave(const Hero& hero);
+    public:
+        static Monster createMonster(int level);
+        static Dungeon createCave(const Hero& hero);
 };
 

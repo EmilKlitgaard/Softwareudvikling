@@ -4,6 +4,8 @@
 #include <chrono>
 #include <thread>
 #include <fstream>
+#include <cstdlib>
+#include <ctime>
 #include <unistd.h>
 
 #include "Game.h"
@@ -234,6 +236,8 @@ void Game::gameOver(vector<Hero> &heroes) {
 }
 
 int Game::start() {
+    srand(time(0));
+
     vector<Hero> heroes;
     vector<Enemy> enemies;
     loadHeroesFromFile(heroes);

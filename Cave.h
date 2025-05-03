@@ -11,7 +11,7 @@ class Cave {
         Cave(string name, int gold, vector<Monster> enemies);
 
         void display() const;
-        vector<Monster>& getEnemies();
+        vector<Monster> &getEnemies();
         int getGold() const;
         string getName() const;
 
