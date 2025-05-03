@@ -6,9 +6,9 @@
 
 using namespace std;
 
-class Dungeon {
+class Cave {
     public:
-        Dungeon(string name, int gold, vector<Monster> enemies);
+        Cave(string name, int gold, vector<Monster> enemies);
 
         void display() const;
         vector<Monster>& getEnemies();

@@ -2,6 +2,8 @@
 
 #include "Cave.h"
 
+using namespace std;
+
 Cave::Cave(string name, int goldReward, vector<Monster> monsters)
     : name(name), goldReward(goldReward), monsters(monsters) {}
 
