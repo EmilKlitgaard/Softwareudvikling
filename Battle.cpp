@@ -14,7 +14,6 @@ Battle::Battle(Hero &newHero, Enemy &newEnemy)
 Battle::~Battle() {}
 
 void Battle::awaitEnter() {
-    cin.ignore();
     cin.get();
 }
 
@@ -26,6 +25,8 @@ bool Battle::startBattle() {
 
     int heroHp = hero.getHp();
     int enemyHp = enemy.getHp();
+    
+    cin.ignore();
 
     while (heroHp > 0 && enemyHp > 0) {
         cout << "\n" << "It's your turn! Press ENTER to attack." << endl;

@@ -33,7 +33,7 @@ void Game::saveHeroesToFile(vector<Hero> &heroes, const string &filename) {
 void Game::loadHeroesFromFile(vector<Hero> &heroes, const string &filename) {
     ifstream inFile(filename);
     if (!inFile) {
-        cerr << "No saved hero file found. Starting fresh.\n";
+        cerr << "No saved hero file found.\n";
         return;
     }
     string name;
