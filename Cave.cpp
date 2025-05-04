@@ -9,8 +9,8 @@ Cave::Cave(string name, int level, int gold, vector<Monster> monsters)
 
 
 void Cave::display() const {
-    cout << "Cave: " << name << " | Gold: " << gold << "\n";
-    cout << "Monsters:\n";
+    cout << "Cave: " << name << ", Gold: " << gold << endl;
+    cout << "Monsters:" << endl;
     for (const Monster& monster : monsters) {
         monster.display();
     }

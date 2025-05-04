@@ -3,10 +3,10 @@
 #include "Hero.h"
 
 Hero::Hero() 
-    : name("Default"), level(1), hp(10), strength(2), xp(0) {}
+    : name("Default"), level(1), hp(10), strength(2), xp(0), gold(0) {}
     
-Hero::Hero(const string newName, const int newLevel, const int newHp, const int newStrength, const int newXp)
-    : name(newName), level(newLevel), hp(newHp), strength(newStrength), xp(newXp) {}
+Hero::Hero(const string newName, const int newLevel, const int newHp, const int newStrength, const int newXp, const int newGold)
+    : name(newName), level(newLevel), hp(newHp), strength(newStrength), xp(newXp), gold(newGold) {}
 
 Hero::~Hero() {}
 
@@ -30,8 +30,16 @@ int Hero::getLevel() const {
     return level;
 }
 
+int Hero::getGold() const {
+    return gold;
+}
+
 void Hero::addXp(int addXp) {
     xp += addXp;
+}
+
+void Hero::addGold(int addGold) {
+    gold += addGold;
 }
 
 int Hero::levelUp() {

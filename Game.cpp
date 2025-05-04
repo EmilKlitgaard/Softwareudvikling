@@ -27,7 +27,7 @@ void Game::saveHeroesToFile(vector<Hero> &heroes, const string &filename) {
         return;
     }
     for (const auto& hero : heroes) {
-        outFile << hero.getName() << " " << hero.getLevel() << " " << hero.getHp() << " " << hero.getStrength() << " " << hero.getXp() << "\n";
+        outFile << hero.getName() << " " << hero.getLevel() << " " << hero.getHp() << " " << hero.getStrength() << " " << hero.getXp() << " " << hero.getGold() << "\n";
     }
     outFile.close();
 }
@@ -39,9 +39,9 @@ void Game::loadHeroesFromFile(vector<Hero> &heroes, const string &filename) {
         return;
     }
     string name;
-    int level, hp, strength, xp;
-    while (inFile >> name >> level >> hp >> strength >> xp) {
-        heroes.emplace_back(name, level, hp, strength, xp);
+    int level, hp, strength, xp, gold;
+    while (inFile >> name >> level >> hp >> strength >> xp >> gold) {
+        heroes.emplace_back(name, level, hp, strength, xp, gold);
     }
     inFile.close();
 }
@@ -52,15 +52,15 @@ void Game::menu() {
             "║      - - - MENU  - - -      ║\n"
             "╚═════════════════════════════╝" << endl;
     cout << "Choose one of the following options: " << endl;
-    cout << "- Create new Hero (1)" << "\n" << "- Load Hero (2)" << "\n" << "- Exit game (3)" << endl;
+    cout << "- Create new Hero (0)" << "\n" << "- Load Hero (1)" << "\n" << "- Exit game (2)" << endl;
     
     while (true) {
         if (cin >> userInput) {
-            if (userInput == 1) {
+            if (userInput == 0) {
                 STATE = CREATE_HERO; 
-            } else if (userInput == 2) {
+            } else if (userInput == 1) {
                 STATE = LOAD_HERO; 
-            } else if (userInput == 3) {
+            } else if (userInput == 2) {
                 STATE = EXIT;
             } else {
                 cout << "Invalid input. Please enter 1, 2, or 3." << endl;
@@ -92,7 +92,7 @@ void Game::createHero(vector<Hero> &heroes){
             }
         }
     }
-    Hero newHero(heroName, 1, 10, 2, 0);
+    Hero newHero(heroName, 1, 10, 2, 0, 0);
     heroes.push_back(newHero);
     currentHero = heroes.size() - 1;
     saveHeroesToFile(heroes);
@@ -113,7 +113,7 @@ int Game::loadHero(vector<Hero> &heroes) {
     while (true) {
         if (cin >> currentHero) {
             if (currentHero >= 0 && currentHero < heroes.size()) {
-                cout << "Hero: " << heroes[currentHero].getName() << " has been chosen. Hero stats:" << "\n" << "Level: "  << heroes[currentHero].getLevel() << "\n" << "Health: " << heroes[currentHero].getHp() << "\n" << "Strength: " << heroes[currentHero].getStrength() << "\n" << "Experience (xp): " << heroes[currentHero].getXp() << "\n" << endl;
+                cout << "Hero: " << heroes[currentHero].getName() << " has been chosen. Hero stats:" << "\n" << "Level: "  << heroes[currentHero].getLevel() << "\n" << "Health: " << heroes[currentHero].getHp() << "\n" << "Strength: " << heroes[currentHero].getStrength() << "\n" << "Experience (xp): " << heroes[currentHero].getXp() << "Gold: " << heroes[currentHero].getGold() << "\n" << endl;
                 sleep(3);
                 STATE = ADVENTURE;
                 return currentHero;
@@ -176,29 +176,37 @@ int Game::selectCave(vector<Hero> &heroes) {
 
     cout << "Choose which cave you want to explore:" << endl;
 
-    vector<Cave> caves;
-
+    caves.clear();
     for (int i = 0; i < 5; ++i) {
-        Cave cave = Factory::createCave(heroes[currentHero]);
-        caves.push_back(cave);
-        cout << "- " << cave.getName() << ".\t Difficulty: " << cave.getLevel() << " (" << i << ")" << endl;
+        caves.push_back( Factory::createCave(heroes[currentHero]) );
+        auto &cave = caves.back();
+        cout << i+1 << ". " << cave.getName() << "\t( Difficulty: " << cave.getLevel() << ", Gold: " << cave.getGold() << " )\n";
     }
-    
+
     while (true) {
-        if (cin >> currentCave) {
-            if (currentCave >= 0 && currentCave < caves.size()) {
-                cout << "Cave '" << caves[currentCave].getName() << "' has been chosen. Cave monsters:" << endl;
-                const vector<Monster> &monsters = caves[currentCave].getMonsters();
-                for (const Monster& monster : monsters) {
-                    cout << "- ";
-                    monster.display();
+        int choice;
+        if (cin >> choice) {
+            if (choice == 0) {
+                STATE = ADVENTURE;
+                return -1;
+            }
+            choice -= 1; // to zero‐based
+            if (choice >= 0 && choice < (int)caves.size()) {
+                currentCave = choice;
+                cout << "\nYou picked '" << caves[choice].getName() << "'. It has " << caves[choice].getMonsters().size() << " monsters." << endl;
+                cout << "Do you want to enter the cave? (Y/N): ";
+
+                char yn;
+                while (cin >> yn) {
+                    if (yn == 'y' || yn == 'Y') {
+                        STATE = START_CAVE;
+                        return currentCave;
+                    } else if (yn == 'n' || yn == 'N') {
+                        STATE = ADVENTURE;
+                        return -1;
+                    }
+                    cout << "Please enter Y or N: ";
                 }
-                sleep(3);
-                STATE = START_CAVE;
-                return currentCave;
-            } 
-            else {
-                cout << "Invalid cave chosen, type a valid number." << endl;
             }
         } else {
             cout << "Invalid input. Please enter a number." << endl;
@@ -208,9 +216,40 @@ int Game::selectCave(vector<Hero> &heroes) {
     }
 }
 
+void Game::startCave(vector<Hero> &heroes) {
+    clearScreen();
+    auto &cave = caves[currentCave];
+    cout << "╔═════════════════════════════════════╗\n"
+            "║      - - - Entering Cave - - -      ║\n"
+            "╚═════════════════════════════════════╝\n\n";
+
+    cave.display();
+
+    const auto &monsters = cave.getMonsters();
+
+    for (size_t i = 0; i < monsters.size(); ++i) {
+        cout << "\n— Battle " << (i + 1) << " of " << monsters.size() << " —\n";
+        Battle battle(heroes[currentHero], monsters[i]);
+        battleWon = battle.startBattle();
+
+        if (!battleWon) {
+            gameOver(heroes);
+            STATE = MENU;
+            return;
+        }
+
+        saveHeroesToFile(heroes);
+        cout << "Press Enter to continue...";
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    }
+
+    cout << "\nCongratulations! You have cleared the cave and earned " << cave.getGold() << " gold!\n";
+    sleep(3);
+    STATE = ADVENTURE;
+}
 
 void Game::showStats(vector<Hero> &heroes) {    
-    cout << "Hero stats:" << "\n" << "Level: "  << heroes[currentHero].getLevel() << "\n" << "Health: " << heroes[currentHero].getHp() << "\n" << "Strength: " << heroes[currentHero].getStrength() << "\n" << "Experience (xp): " << heroes[currentHero].getXp() << "\n" << endl;
+    cout << "Hero stats:" << "\n" << "Level: "  << heroes[currentHero].getLevel() << "\n" << "Health: " << heroes[currentHero].getHp() << "\n" << "Strength: " << heroes[currentHero].getStrength() << "\n" << "Experience (xp): " << heroes[currentHero].getXp() << "Gold: " << heroes[currentHero].getGold() << "\n" << endl;
     STATE = ADVENTURE;
     sleep(5);
 }
@@ -308,9 +347,6 @@ int Game::start() {
             case SELECT_ENEMY:
                 selectEnemy(enemies);
                 break;
-            case SELECT_CAVE:
-                selectCave(heroes);
-                break;
             case SHOW_STATS:
                 showStats(heroes);
                 break;
@@ -319,6 +355,7 @@ int Game::start() {
                 adventure();
                 break;
             case START_BATTLE: {
+                clearScreen();
                 Battle battle(heroes[currentHero], enemies[currentEnemy]); 
                 battleWon = battle.startBattle();
                 saveHeroesToFile(heroes);
@@ -330,6 +367,12 @@ int Game::start() {
                 STATE = POST_BATTLE;
                 break;
             }
+            case SELECT_CAVE:
+                selectCave(heroes);
+                break;
+            case START_CAVE:
+                startCave(heroes);
+                break;
             case POST_BATTLE:
                 clearScreen();
                 adventure();

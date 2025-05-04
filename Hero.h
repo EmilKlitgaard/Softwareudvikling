@@ -9,15 +9,18 @@ class Hero {
         Hero();
         ~Hero();
         
-        Hero(const string, const int, const int, const int, const int);
+        Hero(const string, const int, const int, const int, const int, const int);
         
         string getName() const;
         int getLevel() const;
         int getHp() const;
         int getStrength() const;
         int getXp() const;
+        int getGold() const;
         
         void addXp(const int);
+        void addGold(const int);
+
         int levelUp();
         
     private:
@@ -26,4 +29,5 @@ class Hero {
         int hp;
         int strength;
         int xp;
+        int gold;
     };

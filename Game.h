@@ -41,6 +41,7 @@ class Game {
         int selectEnemy(vector<Enemy> &enemies);
         int selectCave(vector<Hero> &heroes);
         void gameOver(vector<Hero> &heroes);
+        void startCave(vector<Hero> &heroes);
         
         void saveHeroesToFile(vector<Hero> &heroes, const string &filename = "Heroes.txt");
         void loadHeroesFromFile(vector<Hero> &heroes, const string &filename = "Heroes.txt");
@@ -48,6 +49,7 @@ class Game {
     private:
         vector<Hero> heroes;
         vector<Enemy> enemies;
+        vector<Cave> caves;
         
         int currentHero = -1; 
         int currentEnemy = -1;
