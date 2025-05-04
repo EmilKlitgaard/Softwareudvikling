@@ -28,26 +28,26 @@ enum State {
 
 class Game {
     public:
-        Game();
+        Game(vector<Hero> &heroes, vector<Enemy> &enemies);
         ~Game();
         
         int start();
         void menu();
-        void showStats(vector<Hero> &heroes);
+        void showStats();
         void adventure();
         void clearScreen();
-        void createHero(vector<Hero> &heroes);
-        int loadHero(vector<Hero> &heroes);
-        int selectEnemy(vector<Enemy> &enemies);
-        int selectCave(vector<Hero> &heroes);
-        void gameOver(vector<Hero> &heroes);
-        void startCave(vector<Hero> &heroes);
+        void createHero();
+        int loadHero();
+        int selectEnemy();
+        int selectCave();
+        void gameOver();
+        void startCave();
         
-        void saveHeroesToFile(vector<Hero> &heroes, const string &filename = "Heroes.txt");
-        void loadHeroesFromFile(vector<Hero> &heroes, const string &filename = "Heroes.txt");
+        void saveHeroesToFile(const string &filename = "Heroes.txt");
+        void loadHeroesFromFile(const string &filename = "Heroes.txt");
 
     private:
-        vector<Hero> heroes;
+        vector<Hero> &heroes;
         vector<Enemy> enemies;
         vector<Cave> caves;
         

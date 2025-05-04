@@ -9,7 +9,8 @@
 using namespace std;
 
 int main(){
-    Game game;
-    game.start();
-    return 0;
+    vector<Hero> heroes;
+    vector<Enemy> enemies;
+    Game game(heroes, enemies);
+    return game.start();
 }   

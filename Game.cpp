@@ -13,26 +13,26 @@
 #include "Enemy.h"
 #include "Battle.h"
 
-Game::Game() {}
+Game::Game(vector<Hero> &heroes, vector<Enemy> &enemies) : heroes(heroes), enemies(enemies) {}
 Game::~Game() {}
 
 void Game::clearScreen() {
     system("clear"); 
 }
 
-void Game::saveHeroesToFile(vector<Hero> &heroes, const string &filename) {
+void Game::saveHeroesToFile(const string &filename) {
     ofstream outFile(filename);
     if (!outFile) {
         cerr << "Error saving heroes to file.\n";
         return;
     }
-    for (const auto& hero : heroes) {
+    for (const auto &hero : heroes) {
         outFile << hero.getName() << " " << hero.getLevel() << " " << hero.getHp() << " " << hero.getStrength() << " " << hero.getXp() << " " << hero.getGold() << "\n";
     }
     outFile.close();
 }
 
-void Game::loadHeroesFromFile(vector<Hero> &heroes, const string &filename) {
+void Game::loadHeroesFromFile(const string &filename) {
     ifstream inFile(filename);
     if (!inFile) {
         cerr << "No saved hero file found.\n";
@@ -75,7 +75,7 @@ void Game::menu() {
     }
 }
 
-void Game::createHero(vector<Hero> &heroes){
+void Game::createHero(){
     cout << "╔═══════════════════════════════════╗\n"
             "║      - - - Create Hero - - -      ║\n"
             "╚═══════════════════════════════════╝" << endl;
@@ -95,13 +95,13 @@ void Game::createHero(vector<Hero> &heroes){
     Hero newHero(heroName, 1, 10, 2, 0, 0);
     heroes.push_back(newHero);
     currentHero = heroes.size() - 1;
-    saveHeroesToFile(heroes);
+    saveHeroesToFile();
     cout << "Hero '" << newHero.getName() << "' was successfully created!" << endl;
     STATE = ADVENTURE;
     sleep(3);
 }
 
-int Game::loadHero(vector<Hero> &heroes) {
+int Game::loadHero() {
     cout << "╔══════════════════════════════════╗\n"
             "║      - - - Load Hero  - - -      ║\n"
             "╚══════════════════════════════════╝" << endl;
@@ -129,7 +129,7 @@ int Game::loadHero(vector<Hero> &heroes) {
     } 
 }
 
-int Game::selectEnemy(vector<Enemy> &enemies) {
+int Game::selectEnemy() {
     cout << "╔═════════════════════════════════════╗\n"
             "║      - - - Select Enemy  - - -      ║\n"
             "╚═════════════════════════════════════╝" << endl;
@@ -169,7 +169,7 @@ int Game::selectEnemy(vector<Enemy> &enemies) {
     }
 }
 
-int Game::selectCave(vector<Hero> &heroes) {
+int Game::selectCave() {
     cout << "╔════════════════════════════════════╗\n"
             "║      - - - Select Cave  - - -      ║\n"
             "╚════════════════════════════════════╝" << endl;
@@ -216,7 +216,7 @@ int Game::selectCave(vector<Hero> &heroes) {
     }
 }
 
-void Game::startCave(vector<Hero> &heroes) {
+void Game::startCave() {
     clearScreen();
     auto &cave = caves[currentCave];
     cout << "╔═════════════════════════════════════╗\n"
@@ -234,12 +234,12 @@ void Game::startCave(vector<Hero> &heroes) {
         battleWon = battle.startBattle();
 
         if (!battleWon) {
-            gameOver(heroes);
+            gameOver();
             STATE = MENU;
             return;
         }
 
-        saveHeroesToFile(heroes);
+        saveHeroesToFile();
         cout << "Press Enter to continue...";
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
@@ -250,7 +250,7 @@ void Game::startCave(vector<Hero> &heroes) {
     STATE = ADVENTURE;
 }
 
-void Game::showStats(vector<Hero> &heroes) {    
+void Game::showStats() {    
     cout << "Hero stats:" << "\n" << "Level: "  << heroes[currentHero].getLevel() << "\n" << "Health: " << heroes[currentHero].getHp() << "\n" << "Strength: " << heroes[currentHero].getStrength() << "\n" << "Experience (xp): " << heroes[currentHero].getXp() << "\n" << "Gold: " << heroes[currentHero].getGold() << "\n" << endl;
     STATE = ADVENTURE;
     sleep(5);
@@ -297,10 +297,10 @@ void Game::adventure() {
     }
 }
 
-void Game::gameOver(vector<Hero> &heroes) {
-    cout << "╔══════════════════════════════════╗\n"
-            "║      * * * GAME OVER  * * *      ║\n"
-            "╚══════════════════════════════════╝" << endl;
+void Game::gameOver() {
+    cout << "\n" << "╔══════════════════════════════════╗\n"
+                    "║      * * * GAME OVER  * * *      ║\n"
+                    "╚══════════════════════════════════╝" << endl;
     sleep(1);
     heroes.erase(heroes.begin() + currentHero);
     currentHero = -1;
@@ -316,15 +316,13 @@ void Game::gameOver(vector<Hero> &heroes) {
         }
     }
     cout << endl;
-    saveHeroesToFile(heroes);
+    saveHeroesToFile();
 }
 
 int Game::start() {
     srand(time(0));
 
-    vector<Hero> heroes;
-    vector<Enemy> enemies;
-    loadHeroesFromFile(heroes);
+    loadHeroesFromFile();
 
     while (true) {
         switch (STATE) {
@@ -334,23 +332,23 @@ int Game::start() {
                 break;
             case CREATE_HERO:
                 clearScreen();
-                createHero(heroes);
+                createHero();
                 break;
             case LOAD_HERO:
                 if (!heroes.empty()) { 
                     clearScreen();
-                    loadHero(heroes);
+                    loadHero();
                 } else {
                     cout << "No heroes to load, create a new hero...\n" << endl;
                     sleep(1);
-                    createHero(heroes);
+                    createHero();
                 }
                 break;
             case SELECT_ENEMY:
-                selectEnemy(enemies);
+                selectEnemy();
                 break;
             case SHOW_STATS:
-                showStats(heroes);
+                showStats();
                 break;
             case ADVENTURE:
                 clearScreen();
@@ -360,9 +358,9 @@ int Game::start() {
                 clearScreen();
                 Battle battle(heroes[currentHero], enemies[currentEnemy]); 
                 battleWon = battle.startBattle();
-                saveHeroesToFile(heroes);
+                saveHeroesToFile();
                 if (!battleWon) {
-                    gameOver(heroes);
+                    gameOver();
                     STATE = MENU;
                     break;
                 }
@@ -370,10 +368,10 @@ int Game::start() {
                 break;
             }
             case SELECT_CAVE:
-                selectCave(heroes);
+                selectCave();
                 break;
             case START_CAVE:
-                startCave(heroes);
+                startCave();
                 break;
             case POST_BATTLE:
                 clearScreen();
