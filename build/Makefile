@@ -297,6 +297,30 @@ Monster.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Game.dir/build.make CMakeFiles/Game.dir/Monster.cpp.s
 .PHONY : Monster.cpp.s
 
+Opponent.o: Opponent.cpp.o
+.PHONY : Opponent.o
+
+# target to build an object file
+Opponent.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Game.dir/build.make CMakeFiles/Game.dir/Opponent.cpp.o
+.PHONY : Opponent.cpp.o
+
+Opponent.i: Opponent.cpp.i
+.PHONY : Opponent.i
+
+# target to preprocess a source file
+Opponent.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Game.dir/build.make CMakeFiles/Game.dir/Opponent.cpp.i
+.PHONY : Opponent.cpp.i
+
+Opponent.s: Opponent.cpp.s
+.PHONY : Opponent.s
+
+# target to generate assembly for a file
+Opponent.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Game.dir/build.make CMakeFiles/Game.dir/Opponent.cpp.s
+.PHONY : Opponent.cpp.s
+
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -351,6 +375,9 @@ help:
 	@echo "... Monster.o"
 	@echo "... Monster.i"
 	@echo "... Monster.s"
+	@echo "... Opponent.o"
+	@echo "... Opponent.i"
+	@echo "... Opponent.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

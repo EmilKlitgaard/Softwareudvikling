@@ -1,24 +1,12 @@
 #pragma once
 
-#include <string>
+#include "Opponent.h"
 
-using namespace std;
-
-class Monster {
+class Monster : public Opponent {
     public:
         Monster(string name, int hp, int strength, int xp);
+        ~Monster();
 
         void display() const;
-
-        int getHp() const;
-        int getStrength() const;
-        int getXp() const;
-        string getName() const;
-        
-    private:
-        string name;
-        int hp;
-        int strength;
-        int xp;
 };
 

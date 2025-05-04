@@ -3,13 +3,11 @@
 #include <string>
 
 #include "Hero.h"
-#include "Enemy.h"
-#include "Monster.h"
+#include "Opponent.h"
 
 class Battle {
     public:
-        Battle(Hero &newHero, Enemy &newEnemy);
-        Battle(Hero &newHero, const Monster &newMonster);
+        Battle(Hero &newHero, const Opponent &opponent);
         ~Battle();
 
         bool startBattle();
@@ -17,7 +15,6 @@ class Battle {
 
     private:
         Hero &hero;
-        Enemy *enemy = nullptr;
-        const Monster *monster = nullptr;
+        const Opponent &opponent;
 };
 

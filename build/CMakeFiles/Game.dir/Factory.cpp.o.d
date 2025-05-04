@@ -122,5 +122,6 @@ CMakeFiles/Game.dir/Factory.cpp.o: \
  /usr/include/c++/13/bits/stl_bvector.h \
  /usr/include/c++/13/bits/vector.tcc \
  /home/emilklitgaard/Workspace/Softwareudvikling/Monster.h \
+ /home/emilklitgaard/Workspace/Softwareudvikling/Opponent.h \
  /home/emilklitgaard/Workspace/Softwareudvikling/Cave.h \
  /home/emilklitgaard/Workspace/Softwareudvikling/Hero.h

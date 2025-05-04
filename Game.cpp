@@ -105,6 +105,7 @@ int Game::loadHero(vector<Hero> &heroes) {
     cout << "╔══════════════════════════════════╗\n"
             "║      - - - Load Hero  - - -      ║\n"
             "╚══════════════════════════════════╝" << endl;
+
     cout << "Choose which hero you want to load: " << endl;
     for (int i = 0; i < heroes.size(); i++) {
         cout << "- " << heroes[i].getName() << " (" << i << ")" << endl;
@@ -113,7 +114,7 @@ int Game::loadHero(vector<Hero> &heroes) {
     while (true) {
         if (cin >> currentHero) {
             if (currentHero >= 0 && currentHero < heroes.size()) {
-                cout << "Hero: " << heroes[currentHero].getName() << " has been chosen. Hero stats:" << "\n" << "Level: "  << heroes[currentHero].getLevel() << "\n" << "Health: " << heroes[currentHero].getHp() << "\n" << "Strength: " << heroes[currentHero].getStrength() << "\n" << "Experience (xp): " << heroes[currentHero].getXp() << "Gold: " << heroes[currentHero].getGold() << "\n" << endl;
+                cout << "Hero '" << heroes[currentHero].getName() << "' has been chosen. Hero stats:" << "\n" << "Level: "  << heroes[currentHero].getLevel() << "\n" << "Health: " << heroes[currentHero].getHp() << "\n" << "Strength: " << heroes[currentHero].getStrength() << "\n" << "Experience (xp): " << heroes[currentHero].getXp() << "\n" << "Gold: " << heroes[currentHero].getGold() << "\n" << endl;
                 sleep(3);
                 STATE = ADVENTURE;
                 return currentHero;
@@ -132,9 +133,9 @@ int Game::selectEnemy(vector<Enemy> &enemies) {
     cout << "╔═════════════════════════════════════╗\n"
             "║      - - - Select Enemy  - - -      ║\n"
             "╚═════════════════════════════════════╝" << endl;
-    
+
     cout << "Choose which Enemy you want to fight: " << endl;
-    
+
     if (enemies.empty()) {
         enemies.emplace_back("Horse", 4, 1, 150);
         enemies.emplace_back("Weak Goblin", 4, 2, 200);
@@ -145,7 +146,7 @@ int Game::selectEnemy(vector<Enemy> &enemies) {
         enemies.emplace_back("Unicorn", 5, 20, 1500);
         enemies.emplace_back("Dragon", 100, 10, 3000);
     }
-    
+
     for (int i = 0; i < enemies.size(); i++) {
         cout << "- " << enemies[i].getName() << " (" << i << ")" << endl;
     }
@@ -153,17 +154,16 @@ int Game::selectEnemy(vector<Enemy> &enemies) {
     while (true) {
         if (cin >> currentEnemy) {
             if (currentEnemy >= 0 && currentEnemy < enemies.size()) {
-                cout << "Enemy '" << enemies[currentEnemy].getName() << "' has been chosen. Enemy stats:" << "\n" << "- Health: " << enemies[currentEnemy].getHp() << "\n" << "- Strength: " << enemies[currentEnemy].getStrength() << "\n" << "- Experience (xp): " << enemies[currentEnemy].getXp() << "\n" << endl;
+                cout << "Enemy '" << enemies[currentEnemy].getName() << "' has been chosen. Enemy stats:" << "\n" << "- Health: " << enemies[currentEnemy].getHp() << "\n" << "- Strength: " << enemies[currentEnemy].getStrength() << "\n" << "- Experience (xp): " << enemies[currentEnemy].getXp() << endl;
                 sleep(3);
                 STATE = START_BATTLE;
                 return currentEnemy;
-            } 
-            else {
+            } else {
                 cout << "Invalid enemy chosen, type a valid number." << endl;
             }
         } else {
             cout << "Invalid input. Please enter a number." << endl;
-            cin.clear(); 
+            cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
         }
     }
@@ -221,15 +221,16 @@ void Game::startCave(vector<Hero> &heroes) {
     auto &cave = caves[currentCave];
     cout << "╔═════════════════════════════════════╗\n"
             "║      - - - Entering Cave - - -      ║\n"
-            "╚═════════════════════════════════════╝\n\n";
+            "╚═════════════════════════════════════╝" << endl;
 
     cave.display();
+    sleep(3);
 
     const auto &monsters = cave.getMonsters();
 
     for (size_t i = 0; i < monsters.size(); ++i) {
         cout << "\n— Battle " << (i + 1) << " of " << monsters.size() << " —\n";
-        Battle battle(heroes[currentHero], monsters[i]);
+        Battle battle(heroes[currentHero], monsters[i]); 
         battleWon = battle.startBattle();
 
         if (!battleWon) {
@@ -244,12 +245,13 @@ void Game::startCave(vector<Hero> &heroes) {
     }
 
     cout << "\nCongratulations! You have cleared the cave and earned " << cave.getGold() << " gold!\n";
+    heroes[currentHero].addGold(cave.getGold()); 
     sleep(3);
     STATE = ADVENTURE;
 }
 
 void Game::showStats(vector<Hero> &heroes) {    
-    cout << "Hero stats:" << "\n" << "Level: "  << heroes[currentHero].getLevel() << "\n" << "Health: " << heroes[currentHero].getHp() << "\n" << "Strength: " << heroes[currentHero].getStrength() << "\n" << "Experience (xp): " << heroes[currentHero].getXp() << "Gold: " << heroes[currentHero].getGold() << "\n" << endl;
+    cout << "Hero stats:" << "\n" << "Level: "  << heroes[currentHero].getLevel() << "\n" << "Health: " << heroes[currentHero].getHp() << "\n" << "Strength: " << heroes[currentHero].getStrength() << "\n" << "Experience (xp): " << heroes[currentHero].getXp() << "\n" << "Gold: " << heroes[currentHero].getGold() << "\n" << endl;
     STATE = ADVENTURE;
     sleep(5);
 }

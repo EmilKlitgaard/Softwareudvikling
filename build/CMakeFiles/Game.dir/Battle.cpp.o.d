@@ -160,5 +160,4 @@ CMakeFiles/Game.dir/Battle.cpp.o: \
  /usr/include/linux/close_range.h \
  /home/emilklitgaard/Workspace/Softwareudvikling/Battle.h \
  /home/emilklitgaard/Workspace/Softwareudvikling/Hero.h \
- /home/emilklitgaard/Workspace/Softwareudvikling/Enemy.h \
- /home/emilklitgaard/Workspace/Softwareudvikling/Monster.h
+ /home/emilklitgaard/Workspace/Softwareudvikling/Opponent.h
