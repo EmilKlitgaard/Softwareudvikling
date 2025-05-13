@@ -6,6 +6,7 @@ CMakeFiles/Game.dir/Battle.cpp.o
  /home/emilklitgaard/Workspace/Softwareudvikling/Battle.h
  /home/emilklitgaard/Workspace/Softwareudvikling/Hero.h
  /home/emilklitgaard/Workspace/Softwareudvikling/Opponent.h
+ /home/emilklitgaard/Workspace/Softwareudvikling/Weapon.h
  /usr/include/aarch64-linux-gnu/asm/errno.h
  /usr/include/aarch64-linux-gnu/bits/atomic_wide_counter.h
  /usr/include/aarch64-linux-gnu/bits/byteswap.h
@@ -547,6 +548,7 @@ CMakeFiles/Game.dir/Factory.cpp.o
  /home/emilklitgaard/Workspace/Softwareudvikling/Hero.h
  /home/emilklitgaard/Workspace/Softwareudvikling/Monster.h
  /home/emilklitgaard/Workspace/Softwareudvikling/Opponent.h
+ /home/emilklitgaard/Workspace/Softwareudvikling/Weapon.h
  /usr/include/aarch64-linux-gnu/asm/errno.h
  /usr/include/aarch64-linux-gnu/bits/atomic_wide_counter.h
  /usr/include/aarch64-linux-gnu/bits/byteswap.h
@@ -701,6 +703,7 @@ CMakeFiles/Game.dir/Game.cpp.o
  /home/emilklitgaard/Workspace/Softwareudvikling/Hero.h
  /home/emilklitgaard/Workspace/Softwareudvikling/Monster.h
  /home/emilklitgaard/Workspace/Softwareudvikling/Opponent.h
+ /home/emilklitgaard/Workspace/Softwareudvikling/Weapon.h
  /usr/include/aarch64-linux-gnu/asm/errno.h
  /usr/include/aarch64-linux-gnu/bits/atomic_wide_counter.h
  /usr/include/aarch64-linux-gnu/bits/byteswap.h
@@ -923,6 +926,7 @@ CMakeFiles/Game.dir/Game.cpp.o
 CMakeFiles/Game.dir/Hero.cpp.o
  /home/emilklitgaard/Workspace/Softwareudvikling/Hero.cpp
  /home/emilklitgaard/Workspace/Softwareudvikling/Hero.h
+ /home/emilklitgaard/Workspace/Softwareudvikling/Weapon.h
  /usr/include/aarch64-linux-gnu/asm/errno.h
  /usr/include/aarch64-linux-gnu/bits/atomic_wide_counter.h
  /usr/include/aarch64-linux-gnu/bits/byteswap.h
@@ -1451,6 +1455,7 @@ CMakeFiles/Game.dir/main.cpp.o
  /home/emilklitgaard/Workspace/Softwareudvikling/Hero.h
  /home/emilklitgaard/Workspace/Softwareudvikling/Monster.h
  /home/emilklitgaard/Workspace/Softwareudvikling/Opponent.h
+ /home/emilklitgaard/Workspace/Softwareudvikling/Weapon.h
  /usr/include/aarch64-linux-gnu/asm/errno.h
  /usr/include/aarch64-linux-gnu/bits/atomic_wide_counter.h
  /usr/include/aarch64-linux-gnu/bits/byteswap.h

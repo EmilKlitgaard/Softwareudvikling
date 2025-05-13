@@ -48,7 +48,7 @@ class Game {
 
     private:
         vector<Hero> &heroes;
-        vector<Enemy> enemies;
+        vector<Enemy> &enemies;
         vector<Cave> caves;
         
         int currentHero = -1; 

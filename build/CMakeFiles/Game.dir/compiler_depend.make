@@ -5,6 +5,7 @@ CMakeFiles/Game.dir/Battle.cpp.o: /home/emilklitgaard/Workspace/Softwareudviklin
   /home/emilklitgaard/Workspace/Softwareudvikling/Battle.h \
   /home/emilklitgaard/Workspace/Softwareudvikling/Hero.h \
   /home/emilklitgaard/Workspace/Softwareudvikling/Opponent.h \
+  /home/emilklitgaard/Workspace/Softwareudvikling/Weapon.h \
   /usr/include/aarch64-linux-gnu/asm/errno.h \
   /usr/include/aarch64-linux-gnu/bits/atomic_wide_counter.h \
   /usr/include/aarch64-linux-gnu/bits/byteswap.h \
@@ -543,6 +544,7 @@ CMakeFiles/Game.dir/Factory.cpp.o: /home/emilklitgaard/Workspace/Softwareudvikli
   /home/emilklitgaard/Workspace/Softwareudvikling/Hero.h \
   /home/emilklitgaard/Workspace/Softwareudvikling/Monster.h \
   /home/emilklitgaard/Workspace/Softwareudvikling/Opponent.h \
+  /home/emilklitgaard/Workspace/Softwareudvikling/Weapon.h \
   /usr/include/aarch64-linux-gnu/asm/errno.h \
   /usr/include/aarch64-linux-gnu/bits/atomic_wide_counter.h \
   /usr/include/aarch64-linux-gnu/bits/byteswap.h \
@@ -696,6 +698,7 @@ CMakeFiles/Game.dir/Game.cpp.o: /home/emilklitgaard/Workspace/Softwareudvikling/
   /home/emilklitgaard/Workspace/Softwareudvikling/Hero.h \
   /home/emilklitgaard/Workspace/Softwareudvikling/Monster.h \
   /home/emilklitgaard/Workspace/Softwareudvikling/Opponent.h \
+  /home/emilklitgaard/Workspace/Softwareudvikling/Weapon.h \
   /usr/include/aarch64-linux-gnu/asm/errno.h \
   /usr/include/aarch64-linux-gnu/bits/atomic_wide_counter.h \
   /usr/include/aarch64-linux-gnu/bits/byteswap.h \
@@ -917,6 +920,7 @@ CMakeFiles/Game.dir/Game.cpp.o: /home/emilklitgaard/Workspace/Softwareudvikling/
 
 CMakeFiles/Game.dir/Hero.cpp.o: /home/emilklitgaard/Workspace/Softwareudvikling/Hero.cpp \
   /home/emilklitgaard/Workspace/Softwareudvikling/Hero.h \
+  /home/emilklitgaard/Workspace/Softwareudvikling/Weapon.h \
   /usr/include/aarch64-linux-gnu/asm/errno.h \
   /usr/include/aarch64-linux-gnu/bits/atomic_wide_counter.h \
   /usr/include/aarch64-linux-gnu/bits/byteswap.h \
@@ -1442,6 +1446,7 @@ CMakeFiles/Game.dir/main.cpp.o: /home/emilklitgaard/Workspace/Softwareudvikling/
   /home/emilklitgaard/Workspace/Softwareudvikling/Hero.h \
   /home/emilklitgaard/Workspace/Softwareudvikling/Monster.h \
   /home/emilklitgaard/Workspace/Softwareudvikling/Opponent.h \
+  /home/emilklitgaard/Workspace/Softwareudvikling/Weapon.h \
   /usr/include/aarch64-linux-gnu/asm/errno.h \
   /usr/include/aarch64-linux-gnu/bits/atomic_wide_counter.h \
   /usr/include/aarch64-linux-gnu/bits/byteswap.h \
@@ -1758,6 +1763,10 @@ CMakeFiles/Game.dir/main.cpp.o: /home/emilklitgaard/Workspace/Softwareudvikling/
 
 /usr/include/c++/13/bits/ptr_traits.h:
 
+/usr/include/c++/13/iosfwd:
+
+/usr/include/c++/13/bits/predefined_ops.h:
+
 /usr/include/aarch64-linux-gnu/bits/types/struct_timeval.h:
 
 /usr/include/aarch64-linux-gnu/bits/types/struct_sched_param.h:
@@ -1808,8 +1817,6 @@ CMakeFiles/Game.dir/main.cpp.o: /home/emilklitgaard/Workspace/Softwareudvikling/
 
 /usr/include/c++/13/bits/cxxabi_forced.h:
 
-/usr/include/aarch64-linux-gnu/bits/types/struct_tm.h:
-
 /usr/include/aarch64-linux-gnu/bits/types/locale_t.h:
 
 /usr/include/c++/13/cstddef:
@@ -1831,20 +1838,6 @@ CMakeFiles/Game.dir/main.cpp.o: /home/emilklitgaard/Workspace/Softwareudvikling/
 /usr/include/aarch64-linux-gnu/bits/setjmp.h:
 
 /usr/include/aarch64-linux-gnu/bits/struct_mutex.h:
-
-/usr/include/aarch64-linux-gnu/bits/libc-header-start.h:
-
-/usr/include/aarch64-linux-gnu/bits/long-double.h:
-
-/usr/include/stdint.h:
-
-/usr/include/aarch64-linux-gnu/bits/types/cookie_io_functions_t.h:
-
-/usr/include/aarch64-linux-gnu/bits/errno.h:
-
-/usr/include/c++/13/thread:
-
-/usr/include/aarch64-linux-gnu/bits/types/timer_t.h:
 
 /usr/include/c++/13/bits/vector.tcc:
 
@@ -1878,6 +1871,28 @@ CMakeFiles/Game.dir/main.cpp.o: /home/emilklitgaard/Workspace/Softwareudvikling/
 
 /usr/include/aarch64-linux-gnu/bits/atomic_wide_counter.h:
 
+/usr/include/c++/13/tuple:
+
+/usr/include/aarch64-linux-gnu/bits/stdio_lim.h:
+
+/usr/include/features.h:
+
+/usr/include/aarch64-linux-gnu/c++/13/bits/c++allocator.h:
+
+/usr/include/features-time64.h:
+
+/usr/include/c++/13/string_view:
+
+/usr/include/aarch64-linux-gnu/c++/13/bits/c++locale.h:
+
+/home/emilklitgaard/Workspace/Softwareudvikling/Battle.cpp:
+
+/home/emilklitgaard/Workspace/Softwareudvikling/Weapon.h:
+
+/usr/include/asm-generic/errno-base.h:
+
+/usr/include/aarch64-linux-gnu/bits/wordsize.h:
+
 /usr/include/aarch64-linux-gnu/bits/sched.h:
 
 /usr/lib/gcc/aarch64-linux-gnu/13/include/stdint.h:
@@ -1895,6 +1910,20 @@ CMakeFiles/Game.dir/main.cpp.o: /home/emilklitgaard/Workspace/Softwareudvikling/
 /usr/include/aarch64-linux-gnu/bits/cpu-set.h:
 
 /usr/include/c++/13/bits/move.h:
+
+/usr/include/stdint.h:
+
+/usr/include/aarch64-linux-gnu/bits/types/cookie_io_functions_t.h:
+
+/usr/include/aarch64-linux-gnu/bits/errno.h:
+
+/usr/include/c++/13/thread:
+
+/usr/include/aarch64-linux-gnu/bits/types/timer_t.h:
+
+/usr/include/aarch64-linux-gnu/bits/libc-header-start.h:
+
+/usr/include/aarch64-linux-gnu/bits/long-double.h:
 
 /usr/include/c++/13/bits/nested_exception.h:
 
@@ -1914,33 +1943,15 @@ CMakeFiles/Game.dir/main.cpp.o: /home/emilklitgaard/Workspace/Softwareudvikling/
 
 /usr/include/aarch64-linux-gnu/bits/getopt_core.h:
 
-/home/emilklitgaard/Workspace/Softwareudvikling/Battle.cpp:
-
-/usr/include/asm-generic/errno-base.h:
-
-/usr/include/aarch64-linux-gnu/bits/wordsize.h:
-
-/usr/include/c++/13/tuple:
-
-/usr/include/aarch64-linux-gnu/bits/stdio_lim.h:
-
-/usr/include/features.h:
-
-/usr/include/aarch64-linux-gnu/c++/13/bits/c++allocator.h:
-
-/usr/include/features-time64.h:
-
-/usr/include/c++/13/string_view:
-
-/usr/include/aarch64-linux-gnu/c++/13/bits/c++locale.h:
-
 /usr/include/c++/13/bits/uses_allocator_args.h:
 
 /usr/include/aarch64-linux-gnu/bits/timesize.h:
 
+/usr/include/c++/13/bits/new_allocator.h:
+
 /usr/include/aarch64-linux-gnu/bits/select.h:
 
-/usr/include/c++/13/bits/new_allocator.h:
+/usr/include/aarch64-linux-gnu/bits/types/struct_tm.h:
 
 /usr/include/aarch64-linux-gnu/bits/types/time_t.h:
 
@@ -1971,10 +1982,6 @@ CMakeFiles/Game.dir/main.cpp.o: /home/emilklitgaard/Workspace/Softwareudvikling/
 /usr/include/aarch64-linux-gnu/bits/uintn-identity.h:
 
 /usr/include/aarch64-linux-gnu/sys/cdefs.h:
-
-/usr/include/c++/13/iosfwd:
-
-/usr/include/c++/13/bits/predefined_ops.h:
 
 /usr/include/aarch64-linux-gnu/bits/byteswap.h:
 

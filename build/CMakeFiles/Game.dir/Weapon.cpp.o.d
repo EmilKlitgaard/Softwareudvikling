@@ -1,7 +1,7 @@
-CMakeFiles/Game.dir/Factory.cpp.o: \
- /home/emilklitgaard/Workspace/Softwareudvikling/Factory.cpp \
+CMakeFiles/Game.dir/Weapon.cpp.o: \
+ /home/emilklitgaard/Workspace/Softwareudvikling/Weapon.cpp \
  /usr/include/stdc-predef.h \
- /home/emilklitgaard/Workspace/Softwareudvikling/Factory.h \
+ /home/emilklitgaard/Workspace/Softwareudvikling/Weapon.h \
  /usr/include/c++/13/string /usr/include/c++/13/bits/requires_hosted.h \
  /usr/include/aarch64-linux-gnu/c++/13/bits/c++config.h \
  /usr/include/aarch64-linux-gnu/c++/13/bits/os_defines.h \
@@ -116,13 +116,4 @@ CMakeFiles/Game.dir/Factory.cpp.o: \
  /usr/include/c++/13/bits/basic_string.tcc \
  /usr/include/c++/13/bits/memory_resource.h /usr/include/c++/13/cstddef \
  /usr/include/c++/13/bits/uses_allocator.h \
- /usr/include/c++/13/bits/uses_allocator_args.h /usr/include/c++/13/tuple \
- /usr/include/c++/13/vector /usr/include/c++/13/bits/stl_uninitialized.h \
- /usr/include/c++/13/bits/stl_vector.h \
- /usr/include/c++/13/bits/stl_bvector.h \
- /usr/include/c++/13/bits/vector.tcc \
- /home/emilklitgaard/Workspace/Softwareudvikling/Monster.h \
- /home/emilklitgaard/Workspace/Softwareudvikling/Opponent.h \
- /home/emilklitgaard/Workspace/Softwareudvikling/Cave.h \
- /home/emilklitgaard/Workspace/Softwareudvikling/Hero.h \
- /home/emilklitgaard/Workspace/Softwareudvikling/Weapon.h
+ /usr/include/c++/13/bits/uses_allocator_args.h /usr/include/c++/13/tuple

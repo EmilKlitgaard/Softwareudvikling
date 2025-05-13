@@ -16,6 +16,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/emilklitgaard/Workspace/Softwareudvikling/Hero.cpp" "CMakeFiles/Game.dir/Hero.cpp.o" "gcc" "CMakeFiles/Game.dir/Hero.cpp.o.d"
   "/home/emilklitgaard/Workspace/Softwareudvikling/Monster.cpp" "CMakeFiles/Game.dir/Monster.cpp.o" "gcc" "CMakeFiles/Game.dir/Monster.cpp.o.d"
   "/home/emilklitgaard/Workspace/Softwareudvikling/Opponent.cpp" "CMakeFiles/Game.dir/Opponent.cpp.o" "gcc" "CMakeFiles/Game.dir/Opponent.cpp.o.d"
+  "/home/emilklitgaard/Workspace/Softwareudvikling/Weapon.cpp" "CMakeFiles/Game.dir/Weapon.cpp.o" "gcc" "CMakeFiles/Game.dir/Weapon.cpp.o.d"
   "/home/emilklitgaard/Workspace/Softwareudvikling/main.cpp" "CMakeFiles/Game.dir/main.cpp.o" "gcc" "CMakeFiles/Game.dir/main.cpp.o.d"
   )
 

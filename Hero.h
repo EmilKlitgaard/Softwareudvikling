@@ -2,6 +2,8 @@
 
 #include <string>
 
+#include "Weapon.h"
+
 using namespace std;
 
 class Hero {
@@ -22,6 +24,9 @@ class Hero {
         void addGold(const int);
 
         int levelUp();
+
+        void equipWeapon(const Weapon &weapon);
+        Weapon getWeapon() const;
         
     private:
         string name;
@@ -30,4 +35,6 @@ class Hero {
         int strength;
         int xp;
         int gold;
+
+        Weapon weapon;
     };

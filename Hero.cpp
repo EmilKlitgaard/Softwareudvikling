@@ -10,29 +10,12 @@ Hero::Hero(const string newName, const int newLevel, const int newHp, const int 
 
 Hero::~Hero() {}
 
-string Hero::getName() const {
-    return name;
-}
-
-int Hero::getHp() const {
-    return hp;
-}
-
-int Hero::getStrength() const {
-    return strength;
-}
-
-int Hero::getXp() const {
-    return xp;
-}
-
-int Hero::getLevel() const {
-    return level;
-}
-
-int Hero::getGold() const {
-    return gold;
-}
+string Hero::getName() const { return name; }
+int Hero::getHp() const { return hp; }
+int Hero::getStrength() const { return strength; }
+int Hero::getXp() const { return xp; }
+int Hero::getLevel() const { return level; }
+int Hero::getGold() const { return gold; }
 
 void Hero::addXp(int addXp) {
     xp += addXp;
@@ -49,4 +32,12 @@ int Hero::levelUp() {
     hp += 2;
     cout << name << " leveled up to " << level << "!" << endl;
     return level;
+}
+
+void Hero::equipWeapon(const Weapon &newWeapon) {
+    weapon = newWeapon;
+}
+
+Weapon Hero::getWeapon() const {
+    return weapon;
 }
