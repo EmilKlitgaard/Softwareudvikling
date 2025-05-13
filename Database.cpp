@@ -3,16 +3,16 @@
 #include <iostream>
 
 Database::Database(const string &databaseFile) {
-    if (sqlite3_open(databaseFile.c_str(), &db) != SQLITE_OK) {
-        cerr << "Error opening database: " << sqlite3_errmsg(db) << endl;
+    if (sqlite3_open(databaseFile.c_str(), &database) != SQLITE_OK) {
+        cerr << "Error opening database: " << sqlite3_errmsg(database) << endl;
     }
 }
 
 Database::~Database() {
-    sqlite3_close(db);
+    sqlite3_close(database);
 }
 
-void DatabaseManager::initializeDatabase() {
+void Database::initializeDatabase() {
     const char *createTableSQL = R"(
         CREATE TABLE IF NOT EXISTS heroes (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -24,7 +24,7 @@ void DatabaseManager::initializeDatabase() {
             gold INTEGER
         );
     )";
-    sqlite3_exec(db, createTableSQL, nullptr, nullptr, nullptr);
+    sqlite3_exec(database, createTableSQL, nullptr, nullptr, nullptr);
 }
 
 // Implement saveHero, loadHeroes, and analyzeGame...
