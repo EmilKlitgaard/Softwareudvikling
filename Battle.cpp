@@ -27,7 +27,7 @@ bool Battle::startBattle() {
     int heroHp = hero.getHp();
     int opponentHp = opponent.getHp();
 
-    Weapon weapon = hero.getWeapon();
+    Weapon &weapon = hero.getWeapon();
 
     cin.ignore();
 
@@ -41,7 +41,7 @@ bool Battle::startBattle() {
         if (hero.haveWeapon()) {
             weapon.useWeapon();
             if (weapon.isBroken()) {
-                cout << hero.getName() << "'s weapon is broken!" << endl;
+                cout << hero.getName() << "'s weapon has broken!" << endl;
                 hero.unequipWeapon();
                 heroDamage = hero.getStrength();
             }

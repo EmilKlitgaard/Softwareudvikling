@@ -34,18 +34,16 @@ int Hero::levelUp() {
     return level;
 }
 
-void Hero::equipWeapon(const Weapon &newWeapon) {
+Weapon &Hero::getWeapon() { return weapon; }
+
+void Hero::equipWeapon(Weapon &newWeapon) {
     weapon = newWeapon;
-}
-
-Weapon Hero::getWeapon() const {
-    return weapon;
-}
-
-bool Hero::haveWeapon() const {
-    return weapon.getName() != "Fists";
 }
 
 void Hero::unequipWeapon() {
     weapon = Weapon();
+}
+
+bool Hero::haveWeapon() {
+    return weapon.getName() != "Fists";
 }

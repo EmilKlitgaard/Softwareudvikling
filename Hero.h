@@ -25,10 +25,10 @@ class Hero {
 
         int levelUp();
 
-        void equipWeapon(const Weapon &weapon);
-        Weapon getWeapon() const;
-        bool haveWeapon() const;
+        Weapon &getWeapon();
+        void equipWeapon(Weapon &weapon);
         void unequipWeapon();
+        bool haveWeapon();
         
     private:
         string name;

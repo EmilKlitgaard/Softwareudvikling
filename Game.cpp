@@ -257,8 +257,26 @@ void Game::startCave() {
             Weapon("Morningstar", 10, 3, 40)
         };
         Weapon foundWeapon = weapons[rand() % weapons.size()];
-        heroes[currentHero].equipWeapon(foundWeapon);
+        weapons.push_back(foundWeapon);
         cout << "You have found a weapon: " << foundWeapon.getName() << " (Damage: " << foundWeapon.getDamage() << ", Strength Modifier: " << foundWeapon.getStrengthModifier() << ", Durability: " << foundWeapon.getDurability() << ")\n";
+        if (heroes[currentHero].haveWeapon()) {
+            cout << "You already have a weapon: " << heroes[currentHero].getWeapon().getName() << ". Do you want to equip the new weapon? (Y/N): " << endl;
+            char yn;
+            while (cin >> yn) {
+                if (yn == 'y' || yn == 'Y') {
+                    heroes[currentHero].unequipWeapon();
+                    heroes[currentHero].equipWeapon(foundWeapon);
+                    cout << "You have equipped the new weapon: " << foundWeapon.getName() << endl;
+                } else if (yn == 'n' || yn == 'N') {
+                    break;
+                } else { 
+                    cout << "Please enter Y or N: ";
+                }
+            }
+        } else {
+            heroes[currentHero].unequipWeapon();
+            heroes[currentHero].equipWeapon(foundWeapon);
+        }
     }
 
     sleep(3);
