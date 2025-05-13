@@ -9,6 +9,7 @@
 #include "Cave.h"
 #include "Monster.h"
 #include "Factory.h"
+#include "Weapon.h"
 
 using namespace std;
 
@@ -50,6 +51,7 @@ class Game {
         vector<Hero> &heroes;
         vector<Enemy> &enemies;
         vector<Cave> caves;
+        vector<Weapon> weapons;
         
         int currentHero = -1; 
         int currentEnemy = -1;

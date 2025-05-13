@@ -246,6 +246,21 @@ void Game::startCave() {
 
     cout << "\nCongratulations! You have cleared the cave and earned " << cave.getGold() << " gold!\n";
     heroes[currentHero].addGold(cave.getGold()); 
+
+    // Chance to find a random weapon
+    if (rand() % 2) {
+        vector<Weapon> weapons = {
+            Weapon("Knife", 5, 0, 20),
+            Weapon("Stick", 0, 1, 10),
+            Weapon("Metal pipe", 0, 2, 20),
+            Weapon("Sword", 20, 1, 30),
+            Weapon("Morningstar", 10, 3, 40)
+        };
+        Weapon foundWeapon = weapons[rand() % weapons.size()];
+        heroes[currentHero].equipWeapon(foundWeapon);
+        cout << "You have found a weapon: " << foundWeapon.getName() << " (Damage: " << foundWeapon.getDamage() << ", Strength Modifier: " << foundWeapon.getStrengthModifier() << ", Durability: " << foundWeapon.getDurability() << ")\n";
+    }
+
     sleep(3);
     STATE = ADVENTURE;
 }
@@ -358,12 +373,12 @@ int Game::start() {
                 clearScreen();
                 Battle battle(heroes[currentHero], enemies[currentEnemy]); 
                 battleWon = battle.startBattle();
-                saveHeroesToFile();
                 if (!battleWon) {
                     gameOver();
                     STATE = MENU;
                     break;
                 }
+                saveHeroesToFile();
                 STATE = POST_BATTLE;
                 break;
             }

@@ -5,7 +5,7 @@
 #include "Battle.h"
 #include "Hero.h"
 #include "Opponent.h"
-
+#
 using namespace std;
 
 Battle::Battle(Hero &newHero, const Opponent &newOpponent)
@@ -27,13 +27,25 @@ bool Battle::startBattle() {
     int heroHp = hero.getHp();
     int opponentHp = opponent.getHp();
 
+    Weapon weapon = hero.getWeapon();
+
     cin.ignore();
 
     while (heroHp > 0 && opponentHp > 0) {
         cout << "\nIt's your turn! Press ENTER to attack." << endl;
         awaitEnter();
-        opponentHp -= hero.getStrength();
-        cout << hero.getName() << " attacks " << opponent.getName() << " for " << hero.getStrength() << " damage.\t" << opponent.getName() << " HP: " << opponentHp << endl;
+
+        int heroDamage = hero.haveWeapon() ? hero.getStrength() + weapon.getDamage() + (hero.getStrength() * weapon.getStrengthModifier()) : hero.getStrength();
+        opponentHp -= heroDamage;
+        cout << hero.getName() << " attacks " << opponent.getName() << " for " << heroDamage << " damage.\t" << opponent.getName() << " HP: " << opponentHp << endl;
+        if (hero.haveWeapon()) {
+            weapon.useWeapon();
+            if (weapon.isBroken()) {
+                cout << hero.getName() << "'s weapon is broken!" << endl;
+                hero.unequipWeapon();
+                heroDamage = hero.getStrength();
+            }
+        }
 
         if (opponentHp <= 0) {
             cout << opponent.getName() << " is defeated!" << endl;

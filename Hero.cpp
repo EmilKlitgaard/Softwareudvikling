@@ -41,3 +41,11 @@ void Hero::equipWeapon(const Weapon &newWeapon) {
 Weapon Hero::getWeapon() const {
     return weapon;
 }
+
+bool Hero::haveWeapon() const {
+    return weapon.getName() != "Fists";
+}
+
+void Hero::unequipWeapon() {
+    weapon = Weapon();
+}

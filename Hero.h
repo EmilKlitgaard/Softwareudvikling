@@ -27,6 +27,8 @@ class Hero {
 
         void equipWeapon(const Weapon &weapon);
         Weapon getWeapon() const;
+        bool haveWeapon() const;
+        void unequipWeapon();
         
     private:
         string name;

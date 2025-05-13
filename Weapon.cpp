@@ -1,7 +1,7 @@
 #include "Weapon.h"
 
 Weapon::Weapon() 
-    : name("Fists"), damage(1), strengthModifier(0), durability(10) {}
+    : name("Fists"), damage(0), strengthModifier(0), durability(0) {}
 
 Weapon::Weapon(string name, int damage, int strengthModifier, int durability)
     : name(name), damage(damage), strengthModifier(strengthModifier), durability(durability) {}
