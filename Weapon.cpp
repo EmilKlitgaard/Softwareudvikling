@@ -1,4 +1,5 @@
 #include "Weapon.h"
+#include "Database.h"
 
 Weapon::Weapon() 
     : name("Fists"), damage(0), strengthModifier(0), durability(0) {}
@@ -12,10 +13,16 @@ string Weapon::getName() const { return name; }
 int Weapon::getDamage() const { return damage; }
 int Weapon::getStrengthModifier() const { return strengthModifier; }
 int Weapon::getDurability() const { return durability; }
+int Weapon::getId() const { return weaponId; }
 
-void Weapon::useWeapon() {
+void Weapon::setId(const int id) {
+    weaponId = id;
+}
+
+void Weapon::useWeapon(Database &database) {
     if (durability > 0) {
         durability--;
+        database.decrementWeaponDurability(weaponId);
     }
 }
 

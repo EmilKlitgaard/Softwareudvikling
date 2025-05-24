@@ -4,10 +4,11 @@
 
 #include "Hero.h"
 #include "Opponent.h"
+#include "Database.h"
 
 class Battle {
     public:
-        Battle(Hero &newHero, const Opponent &opponent);
+        Battle(Hero &newHero, const Opponent &opponent, Database &database);
         ~Battle();
 
         bool startBattle();
@@ -16,5 +17,6 @@ class Battle {
     private:
         Hero &hero;
         const Opponent &opponent;
+        Database &database;
 };
 

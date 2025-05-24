@@ -3,6 +3,7 @@
 
 CMakeFiles/Game.dir/Battle.cpp.o: /home/emilklitgaard/Workspace/Softwareudvikling/Battle.cpp \
   /home/emilklitgaard/Workspace/Softwareudvikling/Battle.h \
+  /home/emilklitgaard/Workspace/Softwareudvikling/Database.h \
   /home/emilklitgaard/Workspace/Softwareudvikling/Hero.h \
   /home/emilklitgaard/Workspace/Softwareudvikling/Opponent.h \
   /home/emilklitgaard/Workspace/Softwareudvikling/Weapon.h \
@@ -135,12 +136,15 @@ CMakeFiles/Game.dir/Battle.cpp.o: /home/emilklitgaard/Workspace/Softwareudviklin
   /usr/include/c++/13/bits/requires_hosted.h \
   /usr/include/c++/13/bits/std_abs.h \
   /usr/include/c++/13/bits/stl_algobase.h \
+  /usr/include/c++/13/bits/stl_bvector.h \
   /usr/include/c++/13/bits/stl_construct.h \
   /usr/include/c++/13/bits/stl_function.h \
   /usr/include/c++/13/bits/stl_iterator.h \
   /usr/include/c++/13/bits/stl_iterator_base_funcs.h \
   /usr/include/c++/13/bits/stl_iterator_base_types.h \
   /usr/include/c++/13/bits/stl_pair.h \
+  /usr/include/c++/13/bits/stl_uninitialized.h \
+  /usr/include/c++/13/bits/stl_vector.h \
   /usr/include/c++/13/bits/streambuf.tcc \
   /usr/include/c++/13/bits/streambuf_iterator.h \
   /usr/include/c++/13/bits/string_view.tcc \
@@ -148,6 +152,7 @@ CMakeFiles/Game.dir/Battle.cpp.o: /home/emilklitgaard/Workspace/Softwareudviklin
   /usr/include/c++/13/bits/uses_allocator.h \
   /usr/include/c++/13/bits/uses_allocator_args.h \
   /usr/include/c++/13/bits/utility.h \
+  /usr/include/c++/13/bits/vector.tcc \
   /usr/include/c++/13/cctype \
   /usr/include/c++/13/cerrno \
   /usr/include/c++/13/clocale \
@@ -181,6 +186,7 @@ CMakeFiles/Game.dir/Battle.cpp.o: /home/emilklitgaard/Workspace/Softwareudviklin
   /usr/include/c++/13/tuple \
   /usr/include/c++/13/type_traits \
   /usr/include/c++/13/typeinfo \
+  /usr/include/c++/13/vector \
   /usr/include/ctype.h \
   /usr/include/endian.h \
   /usr/include/errno.h \
@@ -191,6 +197,7 @@ CMakeFiles/Game.dir/Battle.cpp.o: /home/emilklitgaard/Workspace/Softwareudviklin
   /usr/include/locale.h \
   /usr/include/pthread.h \
   /usr/include/sched.h \
+  /usr/include/sqlite3.h \
   /usr/include/stdc-predef.h \
   /usr/include/stdio.h \
   /usr/include/stdlib.h \
@@ -523,12 +530,15 @@ CMakeFiles/Game.dir/Database.cpp.o: /home/emilklitgaard/Workspace/Softwareudvikl
   /usr/include/c++/13/bits/requires_hosted.h \
   /usr/include/c++/13/bits/std_abs.h \
   /usr/include/c++/13/bits/stl_algobase.h \
+  /usr/include/c++/13/bits/stl_bvector.h \
   /usr/include/c++/13/bits/stl_construct.h \
   /usr/include/c++/13/bits/stl_function.h \
   /usr/include/c++/13/bits/stl_iterator.h \
   /usr/include/c++/13/bits/stl_iterator_base_funcs.h \
   /usr/include/c++/13/bits/stl_iterator_base_types.h \
   /usr/include/c++/13/bits/stl_pair.h \
+  /usr/include/c++/13/bits/stl_uninitialized.h \
+  /usr/include/c++/13/bits/stl_vector.h \
   /usr/include/c++/13/bits/streambuf.tcc \
   /usr/include/c++/13/bits/streambuf_iterator.h \
   /usr/include/c++/13/bits/string_view.tcc \
@@ -536,6 +546,7 @@ CMakeFiles/Game.dir/Database.cpp.o: /home/emilklitgaard/Workspace/Softwareudvikl
   /usr/include/c++/13/bits/uses_allocator.h \
   /usr/include/c++/13/bits/uses_allocator_args.h \
   /usr/include/c++/13/bits/utility.h \
+  /usr/include/c++/13/bits/vector.tcc \
   /usr/include/c++/13/cctype \
   /usr/include/c++/13/cerrno \
   /usr/include/c++/13/clocale \
@@ -568,6 +579,7 @@ CMakeFiles/Game.dir/Database.cpp.o: /home/emilklitgaard/Workspace/Softwareudvikl
   /usr/include/c++/13/tuple \
   /usr/include/c++/13/type_traits \
   /usr/include/c++/13/typeinfo \
+  /usr/include/c++/13/vector \
   /usr/include/ctype.h \
   /usr/include/endian.h \
   /usr/include/errno.h \
@@ -883,6 +895,7 @@ CMakeFiles/Game.dir/Factory.cpp.o: /home/emilklitgaard/Workspace/Softwareudvikli
 CMakeFiles/Game.dir/Game.cpp.o: /home/emilklitgaard/Workspace/Softwareudvikling/Game.cpp \
   /home/emilklitgaard/Workspace/Softwareudvikling/Battle.h \
   /home/emilklitgaard/Workspace/Softwareudvikling/Cave.h \
+  /home/emilklitgaard/Workspace/Softwareudvikling/Database.h \
   /home/emilklitgaard/Workspace/Softwareudvikling/Enemy.h \
   /home/emilklitgaard/Workspace/Softwareudvikling/Factory.h \
   /home/emilklitgaard/Workspace/Softwareudvikling/Game.h \
@@ -1097,6 +1110,7 @@ CMakeFiles/Game.dir/Game.cpp.o: /home/emilklitgaard/Workspace/Softwareudvikling/
   /usr/include/locale.h \
   /usr/include/pthread.h \
   /usr/include/sched.h \
+  /usr/include/sqlite3.h \
   /usr/include/stdc-predef.h \
   /usr/include/stdint.h \
   /usr/include/stdio.h \
@@ -1629,6 +1643,8 @@ CMakeFiles/Game.dir/Opponent.cpp.o: /home/emilklitgaard/Workspace/Softwareudvikl
   /usr/lib/gcc/aarch64-linux-gnu/13/include/stddef.h
 
 CMakeFiles/Game.dir/Weapon.cpp.o: /home/emilklitgaard/Workspace/Softwareudvikling/Weapon.cpp \
+  /home/emilklitgaard/Workspace/Softwareudvikling/Database.h \
+  /home/emilklitgaard/Workspace/Softwareudvikling/Hero.h \
   /home/emilklitgaard/Workspace/Softwareudvikling/Weapon.h \
   /usr/include/aarch64-linux-gnu/asm/errno.h \
   /usr/include/aarch64-linux-gnu/bits/atomic_wide_counter.h \
@@ -1723,17 +1739,21 @@ CMakeFiles/Game.dir/Weapon.cpp.o: /home/emilklitgaard/Workspace/Softwareudviklin
   /usr/include/c++/13/bits/requires_hosted.h \
   /usr/include/c++/13/bits/std_abs.h \
   /usr/include/c++/13/bits/stl_algobase.h \
+  /usr/include/c++/13/bits/stl_bvector.h \
   /usr/include/c++/13/bits/stl_construct.h \
   /usr/include/c++/13/bits/stl_function.h \
   /usr/include/c++/13/bits/stl_iterator.h \
   /usr/include/c++/13/bits/stl_iterator_base_funcs.h \
   /usr/include/c++/13/bits/stl_iterator_base_types.h \
   /usr/include/c++/13/bits/stl_pair.h \
+  /usr/include/c++/13/bits/stl_uninitialized.h \
+  /usr/include/c++/13/bits/stl_vector.h \
   /usr/include/c++/13/bits/string_view.tcc \
   /usr/include/c++/13/bits/stringfwd.h \
   /usr/include/c++/13/bits/uses_allocator.h \
   /usr/include/c++/13/bits/uses_allocator_args.h \
   /usr/include/c++/13/bits/utility.h \
+  /usr/include/c++/13/bits/vector.tcc \
   /usr/include/c++/13/cctype \
   /usr/include/c++/13/cerrno \
   /usr/include/c++/13/clocale \
@@ -1755,6 +1775,7 @@ CMakeFiles/Game.dir/Weapon.cpp.o: /home/emilklitgaard/Workspace/Softwareudviklin
   /usr/include/c++/13/string_view \
   /usr/include/c++/13/tuple \
   /usr/include/c++/13/type_traits \
+  /usr/include/c++/13/vector \
   /usr/include/ctype.h \
   /usr/include/endian.h \
   /usr/include/errno.h \
@@ -1762,6 +1783,7 @@ CMakeFiles/Game.dir/Weapon.cpp.o: /home/emilklitgaard/Workspace/Softwareudviklin
   /usr/include/features.h \
   /usr/include/linux/errno.h \
   /usr/include/locale.h \
+  /usr/include/sqlite3.h \
   /usr/include/stdc-predef.h \
   /usr/include/stdio.h \
   /usr/include/stdlib.h \
@@ -1772,6 +1794,7 @@ CMakeFiles/Game.dir/Weapon.cpp.o: /home/emilklitgaard/Workspace/Softwareudviklin
 CMakeFiles/Game.dir/main.cpp.o: /home/emilklitgaard/Workspace/Softwareudvikling/main.cpp \
   /home/emilklitgaard/Workspace/Softwareudvikling/Battle.h \
   /home/emilklitgaard/Workspace/Softwareudvikling/Cave.h \
+  /home/emilklitgaard/Workspace/Softwareudvikling/Database.h \
   /home/emilklitgaard/Workspace/Softwareudvikling/Enemy.h \
   /home/emilklitgaard/Workspace/Softwareudvikling/Factory.h \
   /home/emilklitgaard/Workspace/Softwareudvikling/Game.h \
@@ -1968,6 +1991,7 @@ CMakeFiles/Game.dir/main.cpp.o: /home/emilklitgaard/Workspace/Softwareudvikling/
   /usr/include/locale.h \
   /usr/include/pthread.h \
   /usr/include/sched.h \
+  /usr/include/sqlite3.h \
   /usr/include/stdc-predef.h \
   /usr/include/stdio.h \
   /usr/include/stdlib.h \
@@ -2003,12 +2027,6 @@ CMakeFiles/Game.dir/main.cpp.o: /home/emilklitgaard/Workspace/Softwareudvikling/
 
 /home/emilklitgaard/Workspace/Softwareudvikling/Enemy.h:
 
-/usr/include/c++/13/vector:
-
-/usr/include/c++/13/bits/stl_vector.h:
-
-/usr/include/c++/13/bits/stl_uninitialized.h:
-
 /home/emilklitgaard/Workspace/Softwareudvikling/Cave.h:
 
 /usr/include/unistd.h:
@@ -2026,6 +2044,8 @@ CMakeFiles/Game.dir/main.cpp.o: /home/emilklitgaard/Workspace/Softwareudvikling/
 /usr/include/pthread.h:
 
 /usr/include/locale.h:
+
+/usr/include/c++/13/vector:
 
 /usr/include/c++/13/string:
 
@@ -2083,6 +2103,10 @@ CMakeFiles/Game.dir/main.cpp.o: /home/emilklitgaard/Workspace/Softwareudvikling/
 
 /usr/include/c++/13/bits/streambuf.tcc:
 
+/usr/include/c++/13/bits/stl_vector.h:
+
+/usr/include/c++/13/bits/stl_uninitialized.h:
+
 /usr/include/c++/13/bits/stl_iterator_base_types.h:
 
 /usr/include/c++/13/bits/utility.h:
@@ -2099,7 +2123,11 @@ CMakeFiles/Game.dir/main.cpp.o: /home/emilklitgaard/Workspace/Softwareudvikling/
 
 /usr/include/c++/13/bits/predefined_ops.h:
 
-/usr/include/aarch64-linux-gnu/bits/types/struct_timeval.h:
+/usr/include/c++/13/bits/uses_allocator.h:
+
+/usr/include/c++/13/bits/std_abs.h:
+
+/usr/include/c++/13/bits/postypes.h:
 
 /usr/include/aarch64-linux-gnu/bits/types/struct_sched_param.h:
 
@@ -2112,18 +2140,6 @@ CMakeFiles/Game.dir/main.cpp.o: /home/emilklitgaard/Workspace/Softwareudvikling/
 /usr/include/c++/13/type_traits:
 
 /usr/include/aarch64-linux-gnu/bits/types/clockid_t.h:
-
-/usr/include/aarch64-linux-gnu/bits/types/sigset_t.h:
-
-/usr/include/aarch64-linux-gnu/c++/13/bits/error_constants.h:
-
-/usr/include/c++/13/bits/stl_bvector.h:
-
-/usr/include/c++/13/bits/allocator.h:
-
-/home/emilklitgaard/Workspace/Softwareudvikling/Factory.cpp:
-
-/usr/include/c++/13/bits/locale_classes.tcc:
 
 /usr/include/aarch64-linux-gnu/bits/types/__sigset_t.h:
 
@@ -2153,12 +2169,6 @@ CMakeFiles/Game.dir/main.cpp.o: /home/emilklitgaard/Workspace/Softwareudvikling/
 
 /usr/include/aarch64-linux-gnu/bits/types/locale_t.h:
 
-/home/emilklitgaard/Workspace/Softwareudvikling/Database.h:
-
-/usr/include/c++/13/cstddef:
-
-/usr/include/aarch64-linux-gnu/bits/thread-shared-types.h:
-
 /usr/include/aarch64-linux-gnu/bits/types/FILE.h:
 
 /usr/include/aarch64-linux-gnu/bits/types/__fpos_t.h:
@@ -2179,23 +2189,11 @@ CMakeFiles/Game.dir/main.cpp.o: /home/emilklitgaard/Workspace/Softwareudvikling/
 
 /usr/include/aarch64-linux-gnu/bits/types/struct_itimerspec.h:
 
-/usr/include/c++/13/ios:
-
-/usr/include/aarch64-linux-gnu/bits/types/clock_t.h:
-
-/usr/include/aarch64-linux-gnu/bits/getopt_posix.h:
-
 /usr/include/c++/13/bits/ostream.tcc:
 
 /usr/include/aarch64-linux-gnu/bits/types/__locale_t.h:
 
 /usr/include/aarch64-linux-gnu/bits/floatn-common.h:
-
-/usr/include/c++/13/bits/uses_allocator.h:
-
-/usr/include/c++/13/bits/std_abs.h:
-
-/usr/include/c++/13/bits/postypes.h:
 
 /usr/include/c++/13/initializer_list:
 
@@ -2247,6 +2245,32 @@ CMakeFiles/Game.dir/main.cpp.o: /home/emilklitgaard/Workspace/Softwareudvikling/
 
 /usr/include/c++/13/bits/move.h:
 
+/usr/include/aarch64-linux-gnu/bits/types/sigset_t.h:
+
+/usr/include/aarch64-linux-gnu/c++/13/bits/error_constants.h:
+
+/usr/include/c++/13/ios:
+
+/usr/include/aarch64-linux-gnu/bits/getopt_posix.h:
+
+/usr/include/aarch64-linux-gnu/bits/types/clock_t.h:
+
+/usr/include/c++/13/bits/stl_bvector.h:
+
+/usr/include/c++/13/bits/allocator.h:
+
+/home/emilklitgaard/Workspace/Softwareudvikling/Factory.cpp:
+
+/usr/include/c++/13/bits/locale_classes.tcc:
+
+/usr/include/c++/13/cstddef:
+
+/usr/include/aarch64-linux-gnu/bits/thread-shared-types.h:
+
+/home/emilklitgaard/Workspace/Softwareudvikling/Database.h:
+
+/home/emilklitgaard/Workspace/Softwareudvikling/Hero.h:
+
 /usr/include/stdint.h:
 
 /usr/include/aarch64-linux-gnu/bits/types/cookie_io_functions_t.h:
@@ -2275,8 +2299,6 @@ CMakeFiles/Game.dir/main.cpp.o: /home/emilklitgaard/Workspace/Softwareudvikling/
 
 /usr/include/aarch64-linux-gnu/bits/floatn.h:
 
-/home/emilklitgaard/Workspace/Softwareudvikling/Hero.h:
-
 /usr/include/aarch64-linux-gnu/bits/getopt_core.h:
 
 /usr/include/c++/13/bits/uses_allocator_args.h:
@@ -2286,6 +2308,8 @@ CMakeFiles/Game.dir/main.cpp.o: /home/emilklitgaard/Workspace/Softwareudvikling/
 /usr/include/c++/13/bits/new_allocator.h:
 
 /usr/include/aarch64-linux-gnu/bits/select.h:
+
+/usr/include/aarch64-linux-gnu/bits/types/struct_timeval.h:
 
 /usr/include/aarch64-linux-gnu/bits/types/struct_tm.h:
 

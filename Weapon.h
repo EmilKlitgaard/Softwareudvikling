@@ -4,6 +4,8 @@
 
 using namespace std;
 
+class Database;
+
 class Weapon {
     public:
         Weapon();
@@ -14,13 +16,17 @@ class Weapon {
         int getDamage() const;
         int getStrengthModifier() const;
         int getDurability() const;
+        int getId() const;
 
-        void useWeapon();
+        void useWeapon(Database &database);
         bool isBroken() const;
+
+        void setId(const int id);
 
     private:
         string name;
         int damage;
         int strengthModifier;
         int durability;
+        int weaponId;
 };

@@ -12,47 +12,26 @@
 #include "Hero.h"
 #include "Enemy.h"
 #include "Battle.h"
+#include "Database.h"
 
-Game::Game(vector<Hero> &heroes, vector<Enemy> &enemies) : heroes(heroes), enemies(enemies) {}
+Game::Game(vector<Hero> &heroes, vector<Enemy> &enemies, Database &database) : heroes(heroes), enemies(enemies), database(database) {}
 Game::~Game() {}
 
 void Game::clearScreen() {
     system("clear"); 
 }
 
-void Game::saveHeroesToFile(const string &filename) {
-    ofstream outFile(filename);
-    if (!outFile) {
-        cerr << "Error saving heroes to file.\n";
-        return;
-    }
-    for (const auto &hero : heroes) {
-        outFile << hero.getName() << " " << hero.getLevel() << " " << hero.getHp() << " " << hero.getStrength() << " " << hero.getXp() << " " << hero.getGold() << "\n";
-    }
-    outFile.close();
+void Game::postBattle() {
+    database.incrementMonsterDefeated(heroes[currentHero].getId(), heroes[currentHero].getCurrentWeaponId());
+    database.saveHero(heroes[currentHero]);
 }
-
-void Game::loadHeroesFromFile(const string &filename) {
-    ifstream inFile(filename);
-    if (!inFile) {
-        cerr << "No saved hero file found.\n";
-        return;
-    }
-    string name;
-    int level, hp, strength, xp, gold;
-    while (inFile >> name >> level >> hp >> strength >> xp >> gold) {
-        heroes.emplace_back(name, level, hp, strength, xp, gold);
-    }
-    inFile.close();
-}
-
 
 void Game::menu() {
     cout << "╔═════════════════════════════╗\n"
             "║      - - - MENU  - - -      ║\n"
             "╚═════════════════════════════╝" << endl;
     cout << "Choose one of the following options: " << endl;
-    cout << "- Create new Hero (0)" << "\n" << "- Load Hero (1)" << "\n" << "- Exit game (2)" << endl;
+    cout << "- Create new Hero (0)" << "\n" << "- Load Hero (1)" << "\n" << "- Game analysis (2)" << "\n" << "- Exit game (3)" << endl;
     
     while (true) {
         if (cin >> userInput) {
@@ -61,9 +40,11 @@ void Game::menu() {
             } else if (userInput == 1) {
                 STATE = LOAD_HERO; 
             } else if (userInput == 2) {
+                STATE = ANALYSIS; 
+            } else if (userInput == 3) {
                 STATE = EXIT;
             } else {
-                cout << "Invalid input. Please enter 1, 2, or 3." << endl;
+                cout << "Invalid input. Please enter 0, 1, 2 or 3." << endl;
                 continue;
             }
             break;
@@ -92,10 +73,10 @@ void Game::createHero(){
             }
         }
     }
-    Hero newHero(heroName, 1, 10, 2, 0, 0);
+    Hero newHero(heroName, 1, 10, 2, 0, 0, 0);
     heroes.push_back(newHero);
     currentHero = heroes.size() - 1;
-    saveHeroesToFile();
+    database.saveHero(heroes[currentHero]);
     cout << "Hero '" << newHero.getName() << "' was successfully created!" << endl;
     STATE = ADVENTURE;
     sleep(3);
@@ -114,9 +95,8 @@ int Game::loadHero() {
     while (true) {
         if (cin >> currentHero) {
             if (currentHero >= 0 && currentHero < heroes.size()) {
-                cout << "Hero '" << heroes[currentHero].getName() << "' has been chosen. Hero stats:" << "\n" << "Level: "  << heroes[currentHero].getLevel() << "\n" << "Health: " << heroes[currentHero].getHp() << "\n" << "Strength: " << heroes[currentHero].getStrength() << "\n" << "Experience (xp): " << heroes[currentHero].getXp() << "\n" << "Gold: " << heroes[currentHero].getGold() << "\n" << endl;
-                sleep(3);
-                STATE = ADVENTURE;
+                cout << "\nHero '" << heroes[currentHero].getName() << "' has been chosen!";
+                showStats();
                 return currentHero;
             } else {
                 cout << "Invalid Hero chosen, enter a valid number." << endl;
@@ -130,6 +110,7 @@ int Game::loadHero() {
 }
 
 int Game::selectEnemy() {
+    clearScreen();
     cout << "╔═════════════════════════════════════╗\n"
             "║      - - - Select Enemy  - - -      ║\n"
             "╚═════════════════════════════════════╝" << endl;
@@ -154,7 +135,7 @@ int Game::selectEnemy() {
     while (true) {
         if (cin >> currentEnemy) {
             if (currentEnemy >= 0 && currentEnemy < enemies.size()) {
-                cout << "Enemy '" << enemies[currentEnemy].getName() << "' has been chosen. Enemy stats:" << "\n" << "- Health: " << enemies[currentEnemy].getHp() << "\n" << "- Strength: " << enemies[currentEnemy].getStrength() << "\n" << "- Experience (xp): " << enemies[currentEnemy].getXp() << endl;
+                cout << "\nEnemy '" << enemies[currentEnemy].getName() << "' has been chosen. Enemy stats:" << "\n" << "- Health: " << enemies[currentEnemy].getHp() << "\n" << "- Strength: " << enemies[currentEnemy].getStrength() << "\n" << "- Experience (xp): " << enemies[currentEnemy].getXp() << endl;
                 sleep(3);
                 STATE = START_BATTLE;
                 return currentEnemy;
@@ -170,6 +151,7 @@ int Game::selectEnemy() {
 }
 
 int Game::selectCave() {
+    clearScreen();
     cout << "╔════════════════════════════════════╗\n"
             "║      - - - Select Cave  - - -      ║\n"
             "╚════════════════════════════════════╝" << endl;
@@ -230,7 +212,7 @@ void Game::startCave() {
 
     for (size_t i = 0; i < monsters.size(); ++i) {
         cout << "\n— Battle " << (i + 1) << " of " << monsters.size() << " —\n";
-        Battle battle(heroes[currentHero], monsters[i]); 
+        Battle battle(heroes[currentHero], monsters[i], database); 
         battleWon = battle.startBattle();
 
         if (!battleWon) {
@@ -239,7 +221,8 @@ void Game::startCave() {
             return;
         }
 
-        saveHeroesToFile();
+        postBattle();
+
         cout << "Press Enter to continue...";
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
@@ -247,7 +230,7 @@ void Game::startCave() {
     cout << "\nCongratulations! You have cleared the cave and earned " << cave.getGold() << " gold!\n";
     heroes[currentHero].addGold(cave.getGold()); 
 
-    // Chance to find a random weapon
+    // 50% chance to find a random weapon
     if (rand() % 2) {
         vector<Weapon> weapons = {
             Weapon("Knife", 5, 0, 20),
@@ -258,25 +241,29 @@ void Game::startCave() {
         };
         Weapon foundWeapon = weapons[rand() % weapons.size()];
         weapons.push_back(foundWeapon);
+        int weaponId = database.saveWeapon(foundWeapon, heroes[currentHero].getId());
+        foundWeapon.setId(weaponId);
         cout << "You have found a weapon: " << foundWeapon.getName() << " (Damage: " << foundWeapon.getDamage() << ", Strength Modifier: " << foundWeapon.getStrengthModifier() << ", Durability: " << foundWeapon.getDurability() << ")\n";
         if (heroes[currentHero].haveWeapon()) {
-            cout << "You already have a weapon: " << heroes[currentHero].getWeapon().getName() << ". Do you want to equip the new weapon? (Y/N): " << endl;
+            cout << "You already have a '" << heroes[currentHero].getWeapon().getName() << "' equipped. Do you want to equip the new weapon? (Y/N): " << endl;
             char yn;
             while (cin >> yn) {
                 if (yn == 'y' || yn == 'Y') {
-                    heroes[currentHero].unequipWeapon();
                     heroes[currentHero].equipWeapon(foundWeapon);
                     cout << "You have equipped the new weapon: " << foundWeapon.getName() << endl;
+                    break;
                 } else if (yn == 'n' || yn == 'N') {
+                    cout << "You keep your current weapon: " << heroes[currentHero].getWeapon().getName() << endl;
                     break;
                 } else { 
                     cout << "Please enter Y or N: ";
                 }
             }
         } else {
-            heroes[currentHero].unequipWeapon();
             heroes[currentHero].equipWeapon(foundWeapon);
+            cout << "You have equipped the new weapon: " << foundWeapon.getName() << endl;
         }
+        database.saveHero(heroes[currentHero]);
     }
 
     sleep(3);
@@ -284,7 +271,12 @@ void Game::startCave() {
 }
 
 void Game::showStats() {    
-    cout << "Hero stats:" << "\n" << "Level: "  << heroes[currentHero].getLevel() << "\n" << "Health: " << heroes[currentHero].getHp() << "\n" << "Strength: " << heroes[currentHero].getStrength() << "\n" << "Experience (xp): " << heroes[currentHero].getXp() << "\n" << "Gold: " << heroes[currentHero].getGold() << "\n" << endl;
+    cout << "\nHero stats:" << "\nLevel: "  << heroes[currentHero].getLevel() << "\nHealth: " << heroes[currentHero].getHp() << "\nStrength: " << heroes[currentHero].getStrength() << "\nExperience (xp): " << heroes[currentHero].getXp() << "\nGold: " << heroes[currentHero].getGold();
+    if (heroes[currentHero].getWeapon().getName() != "Fists") {
+        cout << "\nWeapon: " << heroes[currentHero].getWeapon().getName() << " (Durability: " << heroes[currentHero].getWeapon().getDurability() << ")" << endl;
+    } else {
+        cout << endl;
+    }
     STATE = ADVENTURE;
     sleep(5);
 }
@@ -301,10 +293,9 @@ void Game::adventure() {
                 "║      - - - Adventure Continued  - - -      ║\n"
                 "╚════════════════════════════════════════════╝" << endl;
     }
-    
     cout << "Choose one of the following options:" << endl;
     cout << "- Return to menu (0)" << "\n" << "- Fight an enemy (1)" << "\n" << "- Explore caves (2)" << "\n" << "- Show hero stats (3)" << endl;
-
+    
     while(true) {
         if (cin >> userInput) {
             if (userInput == 0) {
@@ -335,6 +326,7 @@ void Game::gameOver() {
                     "║      * * * GAME OVER  * * *      ║\n"
                     "╚══════════════════════════════════╝" << endl;
     sleep(1);
+    database.heroDefeated(heroes[currentHero]);
     heroes.erase(heroes.begin() + currentHero);
     currentHero = -1;
     cout << "Returning to main menu in ";
@@ -349,13 +341,50 @@ void Game::gameOver() {
         }
     }
     cout << endl;
-    saveHeroesToFile();
+}
+
+void Game::analysis() {
+    clearScreen();
+    cout << "╔═════════════════════════════════════╗\n"
+            "║      - - - GAME ANALYSIS - - -      ║\n"
+            "╚═════════════════════════════════════╝" << endl;
+
+    cout << "Choose one of the following options: " << endl;
+    cout << "- Show heroes (0)" << "\n" << "- Show monsters defeated by hero (1)" << "\n" << "- Show monsters defeated by weapon (2)" << "\n" << "- Show weapons (3)" << "\n" << "- Return to main menu (4)" << endl;
+    
+    while (true) {
+        if (cin >> userInput) {
+            if (userInput == 0) {
+                database.getHeroesOrderedByName();
+                sleep(5);
+            } else if (userInput == 1) {
+                database.getTotalMonstersDefeatedByHero();
+                sleep(5);
+            } else if (userInput == 2) {
+                database.getMonstersDefeatedByWeapon(heroes);
+                sleep(5);
+            } else if (userInput == 3) {
+                database.getTopHeroPerWeapon();
+                sleep(5);
+            } else if (userInput == 4) {
+                STATE = MENU;
+            } else {
+                cout << "Invalid input. Please enter 0, 1, 2, 3 or 4." << endl;
+                continue;
+            }
+            break;
+        } else {
+            cout << "Invalid input. Please enter a number." << endl;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+    }
 }
 
 int Game::start() {
     srand(time(0));
 
-    loadHeroesFromFile();
+    database.loadHeroes(heroes);
 
     while (true) {
         switch (STATE) {
@@ -389,14 +418,14 @@ int Game::start() {
                 break;
             case START_BATTLE: {
                 clearScreen();
-                Battle battle(heroes[currentHero], enemies[currentEnemy]); 
+                Battle battle(heroes[currentHero], enemies[currentEnemy], database); 
                 battleWon = battle.startBattle();
                 if (!battleWon) {
                     gameOver();
                     STATE = MENU;
                     break;
                 }
-                saveHeroesToFile();
+                postBattle();
                 STATE = POST_BATTLE;
                 break;
             }
@@ -409,6 +438,9 @@ int Game::start() {
             case POST_BATTLE:
                 clearScreen();
                 adventure();
+                break;
+            case ANALYSIS:
+                analysis();
                 break;
             case EXIT:
                 clearScreen();

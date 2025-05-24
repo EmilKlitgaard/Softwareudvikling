@@ -10,6 +10,7 @@
 #include "Monster.h"
 #include "Factory.h"
 #include "Weapon.h"
+#include "Database.h"
 
 using namespace std;
 
@@ -24,34 +25,36 @@ enum State {
     START_BATTLE,
     POST_BATTLE,
     START_CAVE,
+    ANALYSIS,
     EXIT
 };
 
 class Game {
     public:
-        Game(vector<Hero> &heroes, vector<Enemy> &enemies);
+        Game(vector<Hero> &heroes, vector<Enemy> &enemies, Database &database);
         ~Game();
         
         int start();
         void menu();
         void showStats();
         void adventure();
-        void clearScreen();
         void createHero();
         int loadHero();
         int selectEnemy();
         int selectCave();
         void gameOver();
         void startCave();
-        
-        void saveHeroesToFile(const string &filename = "Heroes.txt");
-        void loadHeroesFromFile(const string &filename = "Heroes.txt");
+        void analysis();
+
+        void clearScreen();
+        void postBattle();
 
     private:
         vector<Hero> &heroes;
         vector<Enemy> &enemies;
         vector<Cave> caves;
         vector<Weapon> weapons;
+        Database &database;
         
         int currentHero = -1; 
         int currentEnemy = -1;

@@ -161,4 +161,9 @@ CMakeFiles/Game.dir/Battle.cpp.o: \
  /home/emilklitgaard/Workspace/Softwareudvikling/Battle.h \
  /home/emilklitgaard/Workspace/Softwareudvikling/Hero.h \
  /home/emilklitgaard/Workspace/Softwareudvikling/Weapon.h \
- /home/emilklitgaard/Workspace/Softwareudvikling/Opponent.h
+ /home/emilklitgaard/Workspace/Softwareudvikling/Opponent.h \
+ /home/emilklitgaard/Workspace/Softwareudvikling/Database.h \
+ /usr/include/c++/13/vector /usr/include/c++/13/bits/stl_uninitialized.h \
+ /usr/include/c++/13/bits/stl_vector.h \
+ /usr/include/c++/13/bits/stl_bvector.h \
+ /usr/include/c++/13/bits/vector.tcc /usr/include/sqlite3.h

@@ -8,8 +8,8 @@
 #
 using namespace std;
 
-Battle::Battle(Hero &newHero, const Opponent &newOpponent)
-    : hero(newHero), opponent(newOpponent) {}
+Battle::Battle(Hero &newHero, const Opponent &newOpponent, Database &newDatabase)
+    : hero(newHero), opponent(newOpponent), database(newDatabase) {}
 
 Battle::~Battle() {}
 
@@ -39,7 +39,7 @@ bool Battle::startBattle() {
         opponentHp -= heroDamage;
         cout << hero.getName() << " attacks " << opponent.getName() << " for " << heroDamage << " damage.\t" << opponent.getName() << " HP: " << opponentHp << endl;
         if (hero.haveWeapon()) {
-            weapon.useWeapon();
+            weapon.useWeapon(database);
             if (weapon.isBroken()) {
                 cout << hero.getName() << "'s weapon has broken!" << endl;
                 hero.unequipWeapon();
@@ -48,8 +48,8 @@ bool Battle::startBattle() {
         }
 
         if (opponentHp <= 0) {
-            cout << opponent.getName() << " is defeated!" << endl;
-            cout << hero.getName() << " has won!" << endl;
+            cout << "\n" << opponent.getName() << " is defeated!" << endl;
+            cout << hero.getName() << " has won!\n" << endl;
             hero.addXp(opponent.getXp());
             while (hero.getXp() >= hero.getLevel() * 1000) {
                 hero.levelUp();
@@ -66,7 +66,7 @@ bool Battle::startBattle() {
         if (heroHp <= 0) {
             cout << hero.getName() << " is defeated!" << endl;
             cout << opponent.getName() << " has won!" << endl;
-            sleep(5);
+            sleep(3);
             return false;
         }
     }
