@@ -17,33 +17,73 @@ void Battle::awaitEnter() {
     cin.get();
 }
 
-bool Battle::startBattle() {
+void drawHealthBar(int currentHp, int maxHp, int width) {
+    int filled = (currentHp * width) / maxHp;
+    int empty = width - filled;
+
+    cout << "╔";
+    for (int i = 0; i < width; i++) cout << "═";
+    cout << "╗\n║";
+
+    for (int i = 0; i < filled; i++) cout << "#";
+    for (int i = 0; i < empty; i++) cout << " ";
+    
+    cout << "║\n╚";
+    for (int i = 0; i < width; i++) cout << "═";
+    cout << "╝";
+}
+
+void printBattleStatus(const string &heroName, int heroHp, int heroMaxHp, const string &opponentName, int opponentHp, int opponentMaxHp, string battleText, int barWidth = 40) {
+    system("clear");
+
     cout << "╔══════════════════════════════════════╗\n"
-            "║      - - - Battle Begins  - - -      ║\n"
-            "╚══════════════════════════════════════╝" << endl;
+         << "║      - - - Battle Begins  - - -      ║\n"
+         << "╚══════════════════════════════════════╝\n\n";
 
-    cout << hero.getName() << " vs. " << opponent.getName() << endl;        
+    cout << battleText;
+    cout << heroName << " vs. " << opponentName << "\n\n";
 
+    cout << heroName << "'s Health:\n";
+    drawHealthBar(heroHp, heroMaxHp, barWidth);
+    cout << " " << heroHp << "/" << heroMaxHp << "\n\n";
+
+    cout << opponentName << "'s Health:\n";
+    drawHealthBar(opponentHp, opponentMaxHp, barWidth);
+    cout << " " << opponentHp << "/" << opponentMaxHp << "\n\n";
+}
+
+bool Battle::startBattle(string battleText) {
+    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     int heroHp = hero.getHp();
     int opponentHp = opponent.getHp();
+    int heroMaxHp = heroHp;
+    int opponentMaxHp = opponentHp;
 
     Weapon &weapon = hero.getWeapon();
 
-    cin.ignore();
+    printBattleStatus(hero.getName(), heroHp, heroMaxHp, opponent.getName(), opponentHp, opponentMaxHp, battleText);
 
     while (heroHp > 0 && opponentHp > 0) {
-        cout << "\nIt's your turn! Press ENTER to attack." << endl;
-        awaitEnter();
+        cout << "It's your turn! Press ENTER to attack." << endl;
+        cin.get();
 
-        int heroDamage = hero.haveWeapon() ? hero.getStrength() + weapon.getDamage() + (hero.getStrength() * weapon.getStrengthModifier()) : hero.getStrength();
+        // Opponent attacks hero
+        int heroDamage = hero.haveWeapon() ? 
+            hero.getStrength() + weapon.getDamage() + (hero.getStrength() * weapon.getStrengthModifier())
+            : hero.getStrength();
+
         opponentHp -= heroDamage;
-        cout << hero.getName() << " attacks " << opponent.getName() << " for " << heroDamage << " damage.\t" << opponent.getName() << " HP: " << opponentHp << endl;
+        if (opponentHp < 0) opponentHp = 0;
+
+        printBattleStatus(hero.getName(), heroHp, heroMaxHp, opponent.getName(), opponentHp, opponentMaxHp, battleText);
+
+        cout << hero.getName() << " attacks for " << heroDamage << " damage." << endl;
+
         if (hero.haveWeapon()) {
             weapon.useWeapon(database);
             if (weapon.isBroken()) {
                 cout << hero.getName() << "'s weapon has broken!" << endl;
                 hero.unequipWeapon();
-                heroDamage = hero.getStrength();
             }
         }
 
@@ -57,18 +97,23 @@ bool Battle::startBattle() {
             sleep(5);
             return true;
         }
-
         sleep(1);
 
+        // Opponent attacks hero
         heroHp -= opponent.getStrength();
-        cout << opponent.getName() << " attacks " << hero.getName() << " for " << opponent.getStrength() << " damage.\t" << hero.getName() << " HP: " << heroHp << endl;
+        if (heroHp < 0) heroHp = 0;
+
+        printBattleStatus(hero.getName(), heroHp, heroMaxHp, opponent.getName(), opponentHp, opponentMaxHp, battleText);
+
+        cout << opponent.getName() << " attacks for " << opponent.getStrength() << " damage.\n" << endl;
 
         if (heroHp <= 0) {
             cout << hero.getName() << " is defeated!" << endl;
             cout << opponent.getName() << " has won!" << endl;
-            sleep(3);
+            sleep(2);
             return false;
         }
+        sleep(1);
     }
     return false;
 }

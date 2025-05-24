@@ -11,7 +11,7 @@ class Battle {
         Battle(Hero &newHero, const Opponent &opponent, Database &database);
         ~Battle();
 
-        bool startBattle();
+        bool startBattle(string battleText);
         void awaitEnter();
 
     private:

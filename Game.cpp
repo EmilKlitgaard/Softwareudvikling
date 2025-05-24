@@ -154,7 +154,7 @@ int Game::selectCave() {
     clearScreen();
     cout << "╔════════════════════════════════════╗\n"
             "║      - - - Select Cave  - - -      ║\n"
-            "╚════════════════════════════════════╝" << endl;
+            "╚════════════════════════════════════╝\n" << endl;
 
     cout << "Choose which cave you want to explore:" << endl;
 
@@ -203,7 +203,7 @@ void Game::startCave() {
     auto &cave = caves[currentCave];
     cout << "╔═════════════════════════════════════╗\n"
             "║      - - - Entering Cave - - -      ║\n"
-            "╚═════════════════════════════════════╝" << endl;
+            "╚═════════════════════════════════════╝\n" << endl;
 
     cave.display();
     sleep(3);
@@ -211,9 +211,9 @@ void Game::startCave() {
     const auto &monsters = cave.getMonsters();
 
     for (size_t i = 0; i < monsters.size(); ++i) {
-        cout << "\n— Battle " << (i + 1) << " of " << monsters.size() << " —\n";
         Battle battle(heroes[currentHero], monsters[i], database); 
-        battleWon = battle.startBattle();
+        string battleText = "— Battle " + std::to_string(i + 1) + " of " + std::to_string(monsters.size()) + " —\n";
+        battleWon = battle.startBattle(battleText);
 
         if (!battleWon) {
             gameOver();
@@ -224,7 +224,6 @@ void Game::startCave() {
         postBattle();
 
         cout << "Press Enter to continue...";
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
 
     cout << "\nCongratulations! You have cleared the cave and earned " << cave.getGold() << " gold!\n";
@@ -419,7 +418,7 @@ int Game::start() {
             case START_BATTLE: {
                 clearScreen();
                 Battle battle(heroes[currentHero], enemies[currentEnemy], database); 
-                battleWon = battle.startBattle();
+                battleWon = battle.startBattle("");
                 if (!battleWon) {
                     gameOver();
                     STATE = MENU;
